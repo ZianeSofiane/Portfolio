@@ -1,8 +1,12 @@
 package com.example.portfolioback.repository;
 
+import com.example.portfolioback.entity.Project;
 import com.example.portfolioback.entity.ProjectSkill;
+import com.example.portfolioback.entity.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProjectSkillRepository extends JpaRepository<ProjectSkill, Long> {
+import java.util.Optional;
 
+public interface ProjectSkillRepository extends JpaRepository<ProjectSkill, Long> {
+    Optional<ProjectSkill> findByProjectAndSkillAndVersion(Project project, Skill skill, String version);
 }
