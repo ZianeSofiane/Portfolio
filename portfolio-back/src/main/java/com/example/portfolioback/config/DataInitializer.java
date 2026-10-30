@@ -54,12 +54,12 @@ public class DataInitializer {
         createOrUpdateSkill(skillRepository, "Shell", null);
         createOrUpdateSkill(skillRepository, "Tomcat", null);
 
-        Project portfolio = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/portfolio-front")
+        Project portfolio = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/Portfolio")
                 .orElseGet(Project::new);
         portfolio.setTitle(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE));
         portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
         portfolio.setFeatured(true);
-        portfolio.setGithubUrl("https://github.com/ZianeSofiane/portfolio-front");
+        portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
         portfolio.setImageUrl("portfolio.png");
         ProjectSkill pfJava = createOrUpdateProjectSkill(projectSkillRepository, portfolio, java, "25");
         ProjectSkill pfSpring = createOrUpdateProjectSkill(projectSkillRepository, portfolio, springBoot, "4.1.1");
