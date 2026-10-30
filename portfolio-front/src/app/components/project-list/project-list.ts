@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { LocalizedProject } from '../../models/project.model';
 import { TranslationService } from '../../services/translation.service';
 import { ProjectService } from '../../services/project.service.';
@@ -26,6 +26,12 @@ export class ProjectList {
       })),
     })),
   );
+
+  readonly previewId = signal<number | null>(null);
+
+  togglePreview(id: number): void {
+    this.previewId.update((current) => (current === id ? null : id));
+  }
 
   // Moves the preview with the cursor; flips to the left of the cursor in the right half of the card
   followCursor(event: MouseEvent): void {

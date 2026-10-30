@@ -5,7 +5,7 @@
     <span class="badge-accent mt-4 inline-block">SAFe Practitioner</span>
   </div>
 
-  <div class="mb-10 space-y-4">
+  <div class="missions-filters mb-10 space-y-4">
     <input type="search" class="field" placeholder="{{ i18n.translate('missions.search') }}"
            [value]="query()" (input)="query.set($any($event.target).value)" />
     <div class="flex flex-wrap gap-2">
@@ -23,15 +23,15 @@
     </div>
   </div>
 
-  <ol class="relative border-l-2 border-card-border ml-3">
+  <ol class="missions-timeline relative border-l-2 border-card-border ml-3">
     @for (m of visible(); track m.id) {
       <li class="relative pl-8 pb-10">
-        <span class="absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
+        <span class="mission-marker absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
               [class]="expanded().has(m.id) ? 'bg-accent' : 'bg-muted'"></span>
 
-        <div class="card card-hover">
-          <div class="flex items-start gap-3">
-            <button type="button" class="flex-1 text-left"
+        <div class="card card-hover mission-card">
+          <div class="mission-card-header flex items-start gap-3">
+            <button type="button" class="mission-card-title flex-1 text-left"
                     [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
               <p class="text-sm font-semibold text-accent">{{ m.period }} · {{ m.duration }}</p>
               <h2 class="text-xl font-semibold text-content mt-1">{{ m.company }} — {{ m.role }}</h2>

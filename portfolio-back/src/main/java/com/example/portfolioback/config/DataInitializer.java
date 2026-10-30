@@ -399,7 +399,7 @@ public class DataInitializer {
         resume.setSkills(List.of(
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Langages & Frameworks", "en", "Languages & Frameworks"),
-                        "Java, Spring Boot, Spring Data JPA,<br />Angular, TypeScript, PL/SQL,<br />HTML/CSS, JavaScript, Flutter"
+                        "Java, Spring Boot,<br />Angular, TypeScript, PL/SQL,<br />HTML/CSS, JavaScript, Flutter"
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Outils DevOps & CI/CD", "en", "DevOps & CI/CD Tools"),
@@ -439,7 +439,7 @@ public class DataInitializer {
 
         resume.setExperiences(List.of(
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Ingénieur Études et Développement Java", "en", "Java Study and Development Engineer"),
+                        Map.of("fr", "Ingénieur études et développement Java", "en", "Java study and development engineer"),
                         "Sopra Steria",
                         "Lille",
                         Map.of("fr", "CGI Finance — TMA Banque & Assurance", "en", "CGI Finance — AMS Banking & Insurance"),
@@ -450,24 +450,24 @@ public class DataInitializer {
                                 Map.of("fr", "Maintenance corrective et évolutive sur la stack Java / PL/SQL et édition documentaire (KSL Studio)", "en", "Corrective and evolutionary maintenance on the Java / PL/SQL stack and document publishing (KSL Studio)"),
                                 Map.of("fr", "Mises en production nocturnes (astreintes) et support applicatif critique", "en", "Nightly releases (on-call) and critical application support")
                         ),
-                        List.of("Java", "PL/SQL", "KSL Studio", "Shell", "Apache Tomcat", "Azure", "Jira")
+                        List.of("Java", "PL/SQL", "KSL Studio", "Shell", "Azure", "Jira")
                 ),
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Ingénieur Études et Développement Full-Stack", "en", "Full-Stack Study and Development Engineer"),
+                        Map.of("fr", "Développeur full-Stack", "en", "Full-Stack developer"),
                         "Sopra Steria",
                         "Saint-Denis (Distance / Lille)",
-                        Map.of("fr", "SNCF Réseau — Gisement de Données", "en", "SNCF Réseau — Data Repository"),
+                        Map.of("fr", "SNCF Réseau — Gisement de données", "en", "SNCF Réseau — Data Repository"),
                         Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
-                        Map.of("fr", "Refonte complète d'un gisement de données centralisé (Source Unique de Vérité) pour l'ensemble des incidents et ressources de la SNCF.", "en", "Complete redesign of a centralized data repository (Single Source of Truth) for all SNCF incidents and resources."),
+                        Map.of("fr", "Refonte complète d'un gisement de données centralisé (source unique de vérité) pour les incidents et défaillances de la SNCF.", "en", "Complete redesign of a centralized data repository (single source of truth) for all SNCF incidents and failures."),
                         List.of(
                                 Map.of("fr", "Développement Full-Stack : Spring Boot / Angular 15", "en", "Full-stack development: Spring Boot / Angular 15"),
-                                Map.of("fr", "Conception du moteur de dépendances temporelles et des règles de validation d'incidents (Parent/Enfant)", "en", "Design of the temporal dependency engine and incident validation rules (Parent/Child)"),
-                                Map.of("fr", "Rédaction des Spécifications Techniques Détaillées (STD), plans de tests et revues de code (GitLab MR)", "en", "Drafting Detailed Technical Specifications (DTS), test plans, and code reviews (GitLab MR)")
+                                Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation de modifications (parent/enfant)", "en", "Design of a temporal dependency engine and modifications validation rules (parent/child)"),
+                                Map.of("fr", "Rédaction des spécifications techniques détaillées (STD), plans de tests et revues de code (GitLab MR)", "en", "Drafting detailed technical specifications (DTS), test plans, and code reviews (GitLab MR)")
                         ),
-                        List.of("Java 17", "Spring Boot", "Spring Data JPA", "PostgreSQL", "Angular 15", "TypeScript", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
+                        List.of("Java 17", "Spring Boot", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
                 ),
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Ingénieur Études et Développement (Stage)", "en", "Study and Development Engineer (Internship)"),
+                        Map.of("fr", "Ingénieur études et développement (stage)", "en", "Study and development engineer (internship)"),
                         "Sopra Steria",
                         "Lille / Saint-Denis",
                         Map.of("fr", "SNCF Réseau — Centre de Services", "en", "SNCF Réseau — Service Center"),
@@ -482,7 +482,7 @@ public class DataInitializer {
                         List.of("Java 17", "REST API", "Artifactory", "Nexus", "Jenkins", "Git", "Mockito", "Power BI")
                 ),
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Développeur Web (Stage)", "en", "Web Developer (Internship)"),
+                        Map.of("fr", "Développeur web (stage)", "en", "Web developer (internship)"),
                         "Prodival",
                         "Rosult",
                         Map.of("fr", "Projets clients : Bombardier, ArcelorMittal, CFT", "en", "Client projects: Bombardier, ArcelorMittal, CFT"),

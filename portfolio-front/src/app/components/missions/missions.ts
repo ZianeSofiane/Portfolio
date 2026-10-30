@@ -91,8 +91,36 @@ export class Missions {
       `Responsabilités\n${responsibilities.join('\n\n')}`,
       `Technologies : ${m.techStack.join(', ')}`,
     ].join('\n\n');
-    await navigator.clipboard.writeText(text);
-    this.copiedId.set(m.id);
-    setTimeout(() => this.copiedId.set(null), 1500);
+    if (await this.writeToClipboard(text)) {
+      this.copiedId.set(m.id);
+      setTimeout(() => this.copiedId.set(null), 1500);
+    }
+  }
+
+  // The Clipboard API needs a secure context; fall back to execCommand otherwise (e.g. phones over HTTP)
+  private async writeToClipboard(text: string): Promise<boolean> {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch {
+      // fall through to the legacy path
+    }
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+    document.body.appendChild(area);
+    area.focus();
+    area.select();
+    area.setSelectionRange(0, text.length);
+    try {
+      return document.execCommand('copy');
+    } catch {
+      return false;
+    } finally {
+      document.body.removeChild(area);
+    }
   }
 }

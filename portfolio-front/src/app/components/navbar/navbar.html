@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-16">
 
       <div class="flex items-center">
-        <a routerLink="/" fragment="hero" class="text-xl font-bold text-accent">Sofiane.dev</a>
+        <a routerLink="/" fragment="hero" class="text-lg sm:text-xl font-bold text-accent">Sofiane.dev</a>
       </div>
 
       <div class="hidden md:flex space-x-8">
@@ -13,22 +13,60 @@
         <a routerLink="/" fragment="skills" class="nav-link">{{ i18n.translate('nav.skills') }}</a>
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5 sm:gap-3">
         <button type="button" (click)="i18n.toggleLanguage()"
-                class="btn-outline px-3 py-2 rounded-lg text-sm font-medium"
+                class="btn-outline px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium"
                 aria-label="Switch language">
           {{ i18n.language() !== 'en' ? '🇬🇧 EN' : '🇫🇷 FR' }}
         </button>
         <button type="button" (click)="theme.toggle()"
-                class="btn-outline px-3 py-2 rounded-lg text-sm font-medium"
+                class="btn-outline px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium"
                 [attr.aria-label]="i18n.translate(theme.theme() === 'dark' ? 'theme.toLight' : 'theme.toDark')">
           {{ theme.theme() === 'dark' ? '☀️' : '🌙' }}
         </button>
-        <a href="mailto:zzianesofiane@gmail.com" aria-label="contact" class="btn-primary px-4 py-2 rounded-lg text-sm">
-          {{ i18n.translate('nav.contactMe') }}
+        <a href="mailto:zzianesofiane@gmail.com" aria-label="contact"
+           class="btn-primary inline-flex items-center gap-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm">
+          <svg class="h-4 w-4 sm:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+          <span class="hidden sm:inline">{{ i18n.translate('nav.contactMe') }}</span>
         </a>
+        <button type="button" class="btn-outline md:hidden p-2 rounded-lg"
+                (click)="menuOpen = !menuOpen"
+                [attr.aria-expanded]="menuOpen"
+                aria-controls="mobile-navigation"
+                aria-label="Toggle navigation menu">
+          @if (menuOpen) {
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          } @else {
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          }
+        </button>
       </div>
 
     </div>
   </div>
+
+  @if (menuOpen) {
+    <button type="button" class="fixed inset-x-0 top-16 bottom-0 z-40 bg-black/40 md:hidden"
+            (click)="closeMenu()" aria-label="Close navigation menu"></button>
+    <aside id="mobile-navigation"
+           class="fixed right-0 top-16 bottom-0 z-50 w-72 max-w-[85vw] border-l border-nav-border bg-nav p-5 shadow-xl md:hidden"
+           aria-label="Mobile navigation">
+      <nav class="flex flex-col gap-2">
+        <a routerLink="/" fragment="resume" class="nav-link rounded-lg px-4 py-3" (click)="closeMenu()">{{ i18n.translate('nav.resume') }}</a>
+        <a routerLink="/" fragment="missions" class="nav-link rounded-lg px-4 py-3" (click)="closeMenu()">{{ i18n.translate('nav.missions') }}</a>
+        <a routerLink="/" fragment="projects" class="nav-link rounded-lg px-4 py-3" (click)="closeMenu()">{{ i18n.translate('nav.projects') }}</a>
+        <a routerLink="/" fragment="skills" class="nav-link rounded-lg px-4 py-3" (click)="closeMenu()">{{ i18n.translate('nav.skills') }}</a>
+      </nav>
+    </aside>
+  }
 </nav>
