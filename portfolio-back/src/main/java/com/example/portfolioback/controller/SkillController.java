@@ -7,7 +7,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/skills")
-@CrossOrigin(origins = "http://localhost:4200")
 public class SkillController {
 
     private final SkillRepository skillRepository;
