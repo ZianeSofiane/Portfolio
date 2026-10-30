@@ -15,7 +15,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   backend:
-    build: .
+    build: ./portfolio-back
     container_name: spring-backend
     restart: always
     ports:
@@ -30,7 +30,7 @@ services:
 
   frontend:
     build:
-      context: ./frontend  # Adapte si ton dossier front s'appelle autrement
+      context: ./portfolio-front
       dockerfile: Dockerfile
     container_name: angular-frontend
     restart: always
