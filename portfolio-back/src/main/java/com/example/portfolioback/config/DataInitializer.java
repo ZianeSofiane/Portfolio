@@ -54,6 +54,7 @@ public class DataInitializer {
         createOrUpdateSkill(skillRepository, "Shell", null);
         createOrUpdateSkill(skillRepository, "Tomcat", null);
 
+        // --- PORTFOLIO ---
         Project portfolio = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/Portfolio")
                 .orElseGet(Project::new);
         portfolio.setTitle(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE));
@@ -61,6 +62,8 @@ public class DataInitializer {
         portfolio.setFeatured(true);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
         portfolio.setImageUrl("portfolio.png");
+        portfolio = projectRepository.save(portfolio); // Sauvegarde immédiate pour obtenir un ID
+
         ProjectSkill pfJava = createOrUpdateProjectSkill(projectSkillRepository, portfolio, java, "25");
         ProjectSkill pfSpring = createOrUpdateProjectSkill(projectSkillRepository, portfolio, springBoot, "4.1.1");
         ProjectSkill pfAngular = createOrUpdateProjectSkill(projectSkillRepository, portfolio, angular, "21");
@@ -69,6 +72,7 @@ public class DataInitializer {
         addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker);
         projectRepository.save(portfolio);
 
+        // --- GEOQUIZZ ---
         Project geoquizz = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/ISN_Terminale")
                 .orElseGet(Project::new);
         geoquizz.setTitle(translationService.get(TranslationService.PROJECT_ISN_TITLE));
@@ -78,12 +82,15 @@ public class DataInitializer {
         geoquizz.setImageUrl("geoquizz.png");
         geoquizz.setPreviewUrl("geoquizz.gif");
         geoquizz.setDemoUrl("https://cozy-sopapillas-7be157.netlify.app/");
+        geoquizz = projectRepository.save(geoquizz); // Sauvegarde immédiate
+
         ProjectSkill gqHtml = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, html, null);
         ProjectSkill gqCss = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, css, null);
         ProjectSkill gqJs = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, javascript, null);
         addProjectSkills(geoquizz, gqHtml, gqCss, gqJs);
         projectRepository.save(geoquizz);
 
+        // --- JAVAFX ---
         Project javaFxProject = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx")
                 .orElseGet(Project::new);
         javaFxProject.setTitle(translationService.get(TranslationService.PROJECT_JFX_TITLE));
@@ -92,11 +99,14 @@ public class DataInitializer {
         javaFxProject.setGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx");
         javaFxProject.setImageUrl("javaFx.png");
         javaFxProject.setPreviewUrl("javaFx.gif");
+        javaFxProject = projectRepository.save(javaFxProject); // Sauvegarde immédiate
+
         ProjectSkill fxJavaFx = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, javaFx, null);
         ProjectSkill fxCss = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, css, null);
         addProjectSkills(javaFxProject, fxJavaFx, fxCss);
         projectRepository.save(javaFxProject);
 
+        // --- FLUTTER ---
         Project flutterProject = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/Flutter_App")
                 .orElseGet(Project::new);
         flutterProject.setTitle(translationService.get(TranslationService.PROJECT_FT_TITLE));
@@ -105,6 +115,8 @@ public class DataInitializer {
         flutterProject.setGithubUrl("https://github.com/ZianeSofiane/Flutter_App");
         flutterProject.setImageUrl("soap.png");
         flutterProject.setPreviewUrl("flutter.gif");
+        flutterProject = projectRepository.save(flutterProject); // Sauvegarde immédiate
+
         ProjectSkill ftFlutter = createOrUpdateProjectSkill(projectSkillRepository, flutterProject, flutter, null);
         addProjectSkills(flutterProject, ftFlutter);
         projectRepository.save(flutterProject);
@@ -399,15 +411,15 @@ public class DataInitializer {
                 new ResumeDto.InterestDto(
                         Map.of("fr", "Langues", "en", "Languages"),
                         Map.of("fr", "Français (Langue maternelle)<br/>Anglais B2", "en", "French (native language)<br/>English B2")
-                        ),
+                ),
                 new ResumeDto.InterestDto(
                         Map.of("fr", "Soft Skills", "en", "Soft Skills"),
                         Map.of("fr", "Esprit d'analyse, Autonomie,<br/>", "en", "Analytical mind, Autonomy<br/>")
-                        ),
+                ),
                 new ResumeDto.InterestDto(
                         Map.of("fr", "Centres d’intérêt", "en", "Interests"),
                         Map.of("fr", "Sport : Course à pied, VTT, natation<br/>Lecture", "en", "Sport : running, natation, cycling<br />reading")
-                        )
+                )
         ));
 
         resume.setEducation(List.of(
