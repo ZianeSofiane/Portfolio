@@ -197,3 +197,75 @@ app-root {
   }
 }
 
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+
+  section[id] {
+    padding: 3rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  #hero {
+    padding: 2rem 1rem 9rem;
+  }
+
+  #hero h1 {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+  }
+
+  #hero img[alt="Sofiane ZIANE"] {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .missions-filters > div {
+    display: none;
+  }
+
+  .missions-timeline {
+    margin-left: 0;
+    border-left: 0;
+  }
+
+  .missions-timeline > li {
+    padding-left: 0;
+    padding-bottom: 1.25rem;
+  }
+
+  .mission-marker {
+    display: none;
+  }
+
+  .mission-card-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mission-card-title {
+    min-width: 0;
+    flex-basis: calc(100% - 5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .mission-card-title h2 {
+    font-size: 1.125rem;
+  }
+
+  .mission-card-header > button:nth-child(2) {
+    margin-left: auto;
+  }
+}

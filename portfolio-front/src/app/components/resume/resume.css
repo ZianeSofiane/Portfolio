@@ -283,3 +283,47 @@
 .timeline-body li {
   text-align: justify;
 }
+
+@media (max-width: 640px) {
+  .resume-paper:not(.pdf-export) {
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
+    aspect-ratio: auto;
+  }
+
+  .resume-paper:not(.pdf-export) .resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-paper:not(.pdf-export) .resume-left,
+  .resume-paper:not(.pdf-export) .resume-right {
+    padding: 1rem;
+  }
+
+  .resume-paper:not(.pdf-export) .resume-left {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-nav-border);
+  }
+
+  .resume-paper:not(.pdf-export) .photo-frame {
+    max-width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
+  }
+
+  .resume-paper:not(.pdf-export) .timeline-header,
+  .resume-paper:not(.pdf-export) .timeline-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .resume-paper:not(.pdf-export) .timeline-location,
+  .resume-paper:not(.pdf-export) .meta-date {
+    white-space: normal;
+  }
+
+  .resume-actions {
+    padding: 0 1rem;
+  }
+}
