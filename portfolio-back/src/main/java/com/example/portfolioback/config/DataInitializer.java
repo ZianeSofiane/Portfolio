@@ -27,105 +27,103 @@ public class DataInitializer {
 
     private void initSkillsData(ProjectRepository projectRepository, ProjectSkillRepository projectSkillRepository, SkillRepository skillRepository,
                                 TranslationService translationService){
-        Skill java = getOrCreateSkill(skillRepository, "Java", "Backend");
-        Skill springBoot = getOrCreateSkill(skillRepository, "Spring Boot", "Backend");
-        Skill angular = getOrCreateSkill(skillRepository, "Angular", "Frontend");
-        Skill tailwind = getOrCreateSkill(skillRepository, "Tailwind CSS", "Frontend");
-        getOrCreateSkill(skillRepository, "PrimeNg", "Frontend");
-        getOrCreateSkill(skillRepository, "Jira", "DevOps");
-        getOrCreateSkill(skillRepository, "Azure", "DevOps");
-        getOrCreateSkill(skillRepository, "Gitlab", "DevOps");
-        getOrCreateSkill(skillRepository, "Jenkins", "DevOps");
-        getOrCreateSkill(skillRepository, "SonarQube", "DevOps");
-        getOrCreateSkill(skillRepository, "PL/SQL", "Backend");
-        getOrCreateSkill(skillRepository, "PostgreSQL", "Database");
-        getOrCreateSkill(skillRepository, "H2 Database", "Database");
-        getOrCreateSkill(skillRepository, "PowerQuery", "Data");
-        getOrCreateSkill(skillRepository, "PowerBI", "Data");
-        Skill docker = getOrCreateSkill(skillRepository, "Docker", "DevOps");
-        getOrCreateSkill(skillRepository, "Git", "DevOps");
-        getOrCreateSkill(skillRepository, "Github", "DevOps");
-        getOrCreateSkill(skillRepository, "Typescript", "Frontend");
-        Skill flutter = getOrCreateSkill(skillRepository, "Flutter", "Frontend");
-        Skill html = getOrCreateSkill(skillRepository, "Html", null);
-        Skill css = getOrCreateSkill(skillRepository, "Css", null);
-        Skill javascript = getOrCreateSkill(skillRepository, "Javascript", null);
-        Skill javaFx = getOrCreateSkill(skillRepository, "JavaFx", null);
-        getOrCreateSkill(skillRepository, "Shell", null);
-        getOrCreateSkill(skillRepository, "Tomcat", null);
+        Skill java = createOrUpdateSkill(skillRepository, "Java", "Backend");
+        Skill springBoot = createOrUpdateSkill(skillRepository, "Spring Boot", "Backend");
+        Skill angular = createOrUpdateSkill(skillRepository, "Angular", "Frontend");
+        Skill tailwind = createOrUpdateSkill(skillRepository, "Tailwind CSS", "Frontend");
+        createOrUpdateSkill(skillRepository, "PrimeNg", "Frontend");
+        createOrUpdateSkill(skillRepository, "Jira", "DevOps");
+        createOrUpdateSkill(skillRepository, "Azure", "DevOps");
+        createOrUpdateSkill(skillRepository, "Gitlab", "DevOps");
+        createOrUpdateSkill(skillRepository, "Jenkins", "DevOps");
+        createOrUpdateSkill(skillRepository, "SonarQube", "DevOps");
+        createOrUpdateSkill(skillRepository, "PL/SQL", "Backend");
+        createOrUpdateSkill(skillRepository, "PostgreSQL", "Database");
+        createOrUpdateSkill(skillRepository, "H2 Database", "Database");
+        createOrUpdateSkill(skillRepository, "PowerQuery", "Data");
+        createOrUpdateSkill(skillRepository, "PowerBI", "Data");
+        Skill docker = createOrUpdateSkill(skillRepository, "Docker", "DevOps");
+        createOrUpdateSkill(skillRepository, "Git", "DevOps");
+        createOrUpdateSkill(skillRepository, "Github", "DevOps");
+        createOrUpdateSkill(skillRepository, "Typescript", "Frontend");
+        Skill flutter = createOrUpdateSkill(skillRepository, "Flutter", "Frontend");
+        Skill html = createOrUpdateSkill(skillRepository, "Html", null);
+        Skill css = createOrUpdateSkill(skillRepository, "Css", null);
+        Skill javascript = createOrUpdateSkill(skillRepository, "Javascript", null);
+        Skill javaFx = createOrUpdateSkill(skillRepository, "JavaFx", null);
+        createOrUpdateSkill(skillRepository, "Shell", null);
+        createOrUpdateSkill(skillRepository, "Tomcat", null);
 
         Project portfolio = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/portfolio-front")
-                .orElseGet(() -> projectRepository.save(Project.builder()
-                        .title(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE))
-                        .description(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION))
-                        .featured(true)
-                        .githubUrl("https://github.com/ZianeSofiane/portfolio-front")
-                        .imageUrl("portfolio.png")
-                        .build()));
-        ProjectSkill pfJava = getOrCreateProjectSkill(projectSkillRepository, portfolio, java, "25");
-        ProjectSkill pfSpring = getOrCreateProjectSkill(projectSkillRepository, portfolio, springBoot, "4.1.1");
-        ProjectSkill pfAngular = getOrCreateProjectSkill(projectSkillRepository, portfolio, angular, "21");
-        ProjectSkill pfTailwind = getOrCreateProjectSkill(projectSkillRepository, portfolio, tailwind, "4.3");
-        ProjectSkill pfDocker = getOrCreateProjectSkill(projectSkillRepository, portfolio, docker, "29.1.3");
+                .orElseGet(Project::new);
+        portfolio.setTitle(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE));
+        portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
+        portfolio.setFeatured(true);
+        portfolio.setGithubUrl("https://github.com/ZianeSofiane/portfolio-front");
+        portfolio.setImageUrl("portfolio.png");
+        ProjectSkill pfJava = createOrUpdateProjectSkill(projectSkillRepository, portfolio, java, "25");
+        ProjectSkill pfSpring = createOrUpdateProjectSkill(projectSkillRepository, portfolio, springBoot, "4.1.1");
+        ProjectSkill pfAngular = createOrUpdateProjectSkill(projectSkillRepository, portfolio, angular, "21");
+        ProjectSkill pfTailwind = createOrUpdateProjectSkill(projectSkillRepository, portfolio, tailwind, "4.3");
+        ProjectSkill pfDocker = createOrUpdateProjectSkill(projectSkillRepository, portfolio, docker, "29.1.3");
         addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker);
         projectRepository.save(portfolio);
 
         Project geoquizz = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/ISN_Terminale")
-                .orElseGet(() -> projectRepository.save(Project.builder()
-                        .title(translationService.get(TranslationService.PROJECT_ISN_TITLE))
-                        .description(translationService.get(TranslationService.PROJECT_ISN_DESCRIPTION))
-                        .featured(true)
-                        .githubUrl("https://github.com/ZianeSofiane/ISN_Terminale")
-                        .imageUrl("geoquizz.png")
-                        .previewUrl("geoquizz.gif")
-                        .demoUrl("https://cozy-sopapillas-7be157.netlify.app/")
-                        .build()));
-        ProjectSkill gqHtml = getOrCreateProjectSkill(projectSkillRepository, geoquizz, html, null);
-        ProjectSkill gqCss = getOrCreateProjectSkill(projectSkillRepository, geoquizz, css, null);
-        ProjectSkill gqJs = getOrCreateProjectSkill(projectSkillRepository, geoquizz, javascript, null);
+                .orElseGet(Project::new);
+        geoquizz.setTitle(translationService.get(TranslationService.PROJECT_ISN_TITLE));
+        geoquizz.setDescription(translationService.get(TranslationService.PROJECT_ISN_DESCRIPTION));
+        geoquizz.setFeatured(true);
+        geoquizz.setGithubUrl("https://github.com/ZianeSofiane/ISN_Terminale");
+        geoquizz.setImageUrl("geoquizz.png");
+        geoquizz.setPreviewUrl("geoquizz.gif");
+        geoquizz.setDemoUrl("https://cozy-sopapillas-7be157.netlify.app/");
+        ProjectSkill gqHtml = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, html, null);
+        ProjectSkill gqCss = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, css, null);
+        ProjectSkill gqJs = createOrUpdateProjectSkill(projectSkillRepository, geoquizz, javascript, null);
         addProjectSkills(geoquizz, gqHtml, gqCss, gqJs);
         projectRepository.save(geoquizz);
 
         Project javaFxProject = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx")
-                .orElseGet(() -> projectRepository.save(Project.builder()
-                        .title(translationService.get(TranslationService.PROJECT_JFX_TITLE))
-                        .description(translationService.get(TranslationService.PROJECT_JFX_DESCRIPTION))
-                        .featured(true)
-                        .githubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx")
-                        .imageUrl("javaFx.png")
-                        .previewUrl("javaFx.gif")
-                        .build()));
-        ProjectSkill fxJavaFx = getOrCreateProjectSkill(projectSkillRepository, javaFxProject, javaFx, null);
-        ProjectSkill fxCss = getOrCreateProjectSkill(projectSkillRepository, javaFxProject, css, null);
+                .orElseGet(Project::new);
+        javaFxProject.setTitle(translationService.get(TranslationService.PROJECT_JFX_TITLE));
+        javaFxProject.setDescription(translationService.get(TranslationService.PROJECT_JFX_DESCRIPTION));
+        javaFxProject.setFeatured(true);
+        javaFxProject.setGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx");
+        javaFxProject.setImageUrl("javaFx.png");
+        javaFxProject.setPreviewUrl("javaFx.gif");
+        ProjectSkill fxJavaFx = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, javaFx, null);
+        ProjectSkill fxCss = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, css, null);
         addProjectSkills(javaFxProject, fxJavaFx, fxCss);
         projectRepository.save(javaFxProject);
 
         Project flutterProject = projectRepository.findByGithubUrl("https://github.com/ZianeSofiane/Flutter_App")
-                .orElseGet(() -> projectRepository.save(Project.builder()
-                        .title(translationService.get(TranslationService.PROJECT_FT_TITLE))
-                        .description(translationService.get(TranslationService.PROJECT_FT_DESCRIPTION))
-                        .featured(true)
-                        .githubUrl("https://github.com/ZianeSofiane/Flutter_App")
-                        .imageUrl("soap.png")
-                        .previewUrl("flutter.gif")
-                        .build()));
-        ProjectSkill ftFlutter = getOrCreateProjectSkill(projectSkillRepository, flutterProject, flutter, null);
+                .orElseGet(Project::new);
+        flutterProject.setTitle(translationService.get(TranslationService.PROJECT_FT_TITLE));
+        flutterProject.setDescription(translationService.get(TranslationService.PROJECT_FT_DESCRIPTION));
+        flutterProject.setFeatured(true);
+        flutterProject.setGithubUrl("https://github.com/ZianeSofiane/Flutter_App");
+        flutterProject.setImageUrl("soap.png");
+        flutterProject.setPreviewUrl("flutter.gif");
+        ProjectSkill ftFlutter = createOrUpdateProjectSkill(projectSkillRepository, flutterProject, flutter, null);
         addProjectSkills(flutterProject, ftFlutter);
         projectRepository.save(flutterProject);
     }
 
-    private Skill getOrCreateSkill(SkillRepository skillRepository, String name, String category) {
-        return skillRepository.findByName(name)
-                .orElseGet(() -> skillRepository.save(Skill.builder().name(name).category(category).build()));
+    private Skill createOrUpdateSkill(SkillRepository skillRepository, String name, String category) {
+        Skill skill = skillRepository.findByName(name).orElseGet(Skill::new);
+        skill.setName(name);
+        skill.setCategory(category);
+        return skillRepository.save(skill);
     }
 
-    private ProjectSkill getOrCreateProjectSkill(ProjectSkillRepository projectSkillRepository, Project project, Skill skill, String version) {
-        return projectSkillRepository.findByProjectAndSkillAndVersion(project, skill, version)
-                .orElseGet(() -> projectSkillRepository.save(ProjectSkill.builder()
-                        .project(project)
-                        .skill(skill)
-                        .version(version)
-                        .build()));
+    private ProjectSkill createOrUpdateProjectSkill(ProjectSkillRepository projectSkillRepository, Project project, Skill skill, String version) {
+        ProjectSkill projectSkill = projectSkillRepository.findByProjectAndSkill(project, skill)
+                .orElseGet(ProjectSkill::new);
+        projectSkill.setProject(project);
+        projectSkill.setSkill(skill);
+        projectSkill.setVersion(version);
+        return projectSkillRepository.save(projectSkill);
     }
 
     private void addProjectSkills(Project project, ProjectSkill... projectSkills) {
@@ -360,17 +358,11 @@ public class DataInitializer {
                 false
         );
 
-        missionRepository.saveAll(List.of(cgiTma, sncfGisement, sncfJira, prodival).stream()
-                .filter(mission -> !missionRepository.existsById(mission.getId()))
-                .toList());
+        missionRepository.saveAll(List.of(cgiTma, sncfGisement, sncfJira, prodival));
     }
 
     private void initResumeData(TranslationService translationService, ResumeRepository resumeRepository){
-        if (resumeRepository.existsByName("Sofiane ZIANE")) {
-            return;
-        }
-
-        Resume resume = new Resume();
+        Resume resume = resumeRepository.findByName("Sofiane ZIANE").orElseGet(Resume::new);
         resume.setName("Sofiane ZIANE");
 
         resume.setRole(Map.of(
