@@ -24,7 +24,7 @@ public class MissionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mission> getMissionById(@PathVariable Long id) {
+    public ResponseEntity<Mission> getMissionById(@PathVariable String id) {
         return missionRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
