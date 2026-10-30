@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface ProjectSkillRepository extends JpaRepository<ProjectSkill, Long> {
-    Optional<ProjectSkill> findByProjectAndSkillAndVersion(Project project, Skill skill, String version);
+    Optional<ProjectSkill> findByProjectAndSkill(Project project, Skill skill);
 }
