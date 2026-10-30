@@ -9,7 +9,7 @@
       <div class="card card-hover group relative flex flex-col justify-between hover:z-20"
            (mousemove)="followCursor($event)">
         @if (project.previewUrl) {
-          <div class="pointer-events-none absolute z-30 w-64 overflow-hidden rounded-xl border border-accent bg-page opacity-0 shadow-2xl shadow-accent/20 transition-opacity duration-200 group-hover:opacity-100"
+          <div class="max-md:hidden pointer-events-none absolute z-30 w-64 overflow-hidden rounded-xl border border-accent bg-page opacity-0 shadow-2xl shadow-accent/20 transition-opacity duration-200 group-hover:opacity-100"
                [style]="'left: var(--x, 0); top: var(--y, 0); transform: translate(var(--tx, 16px), 16px)'">
             <img [src]="'/logos/projects/' + project.previewUrl" [alt]="project.title" loading="lazy"
               class="w-full h-auto object-contain" />
@@ -36,6 +36,13 @@
           </div>
           <p class="text-muted text-sm mb-6 leading-relaxed">{{ project.description }}</p>
 
+          @if (project.previewUrl && previewId() === project.id) {
+            <div class="md:hidden mb-6 overflow-hidden rounded-xl border border-accent bg-page shadow-lg shadow-accent/20">
+              <img [src]="'/logos/projects/' + project.previewUrl" [alt]="project.title"
+                class="w-full h-auto object-contain" />
+            </div>
+          }
+
           <div class="flex flex-wrap gap-2 mb-6">
             @for (projectSkill of project.projectSkills; track projectSkill.id) {
               <span class="badge">
@@ -58,6 +65,13 @@
             <a [href]="project.demoUrl" target="_blank" class="link-subtle text-sm font-medium">
               {{ i18n.translate('projects.demo') }}
             </a>
+          }
+          @if (project.previewUrl) {
+            <button type="button" class="md:hidden btn-outline px-3 py-1 rounded-lg text-xs font-medium"
+                    [attr.aria-expanded]="previewId() === project.id"
+                    (click)="togglePreview(project.id)">
+              {{ previewId() === project.id ? i18n.translate('projects.hidePreview') : i18n.translate('projects.preview') }}
+            </button>
           }
         </div>
       </div>
