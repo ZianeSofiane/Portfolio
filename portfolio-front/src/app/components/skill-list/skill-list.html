@@ -1,0 +1,54 @@
+<section id="skills" class="py-16 px-6 max-w-7xl mx-auto">
+  <div class="text-center mt-10 mb-12">
+    <h2 class="section-title">{{ i18n.translate('skills.title') }}</h2>
+    <p class="section-subtitle">{{ i18n.translate('skills.subtitle') }}</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0">
+    <div class="card p-6 @container flex flex-col">
+      <h3 class="text-xl text-center font-semibold text-accent mb-6">FRONTEND</h3>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4">
+        @for (skill of frontEndSkills(); track skill.id) {
+          <div class="flex items-center gap-3">
+            <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
+            <span class="text-lg font-semibold text-content">{{ skill.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="card p-6 @container flex flex-col">
+      <h3 class="text-xl text-center font-semibold text-accent mb-6">BACKEND</h3>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4">
+        @for (skill of backEndSkills(); track skill.id) {
+          <div class="flex items-center gap-3">
+            <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
+            <span class="text-lg font-semibold text-content">{{ skill.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="card p-6 @container flex flex-col">
+      <h3 class="text-xl text-center font-semibold text-accent mb-6">DEVOPS</h3>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4">
+        @for (skill of devOpsSkills(); track skill.id) {
+          <div class="flex items-center gap-3">
+            <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
+            <span class="text-lg font-semibold text-content">{{ skill.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="card p-6 @container flex flex-col">
+      <h3 class="text-xl text-center font-semibold text-accent mb-6">Data</h3>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-4">
+        @for (skill of dataSkills(); track skill.id) {
+          <div class="flex items-center gap-3">
+            <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
+            <span class="text-lg font-semibold text-content">{{ skill.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+
+</section>

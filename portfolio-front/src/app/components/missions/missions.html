@@ -1,0 +1,89 @@
+<section id="missions" class="py-16 px-6 max-w-5xl mx-auto">
+  <div class="text-center mt-10 mb-10">
+    <h1 class="section-title">{{ i18n.translate('missions.title') }}</h1>
+    <p class="section-subtitle">{{ i18n.translate('missions.description') }}</p>
+    <span class="badge-accent mt-4 inline-block">SAFe Practitioner</span>
+  </div>
+
+  <div class="mb-10 space-y-4">
+    <input type="search" class="field" placeholder="{{ i18n.translate('missions.search') }}"
+           [value]="query()" (input)="query.set($any($event.target).value)" />
+    <div class="flex flex-wrap gap-2">
+      @for (f of this.filters(); track f.key) {
+        <button type="button" (click)="activeFilter.set(f.key)"
+                [class]="(activeFilter() === f.key ? 'btn-primary' : 'btn-outline') + ' px-4 py-2 rounded-full text-sm'">
+          <div class="flex items-center gap-3">
+            @if (f.label != 'Tous') {
+              <img [src]="this.skillService.getIconPath(f.label)" alt="" class="h-6 w-6" />
+            }
+            <span class="text-sm text-content">{{ f.label }}</span>
+          </div>
+        </button>
+      }
+    </div>
+  </div>
+
+  <ol class="relative border-l-2 border-card-border ml-3">
+    @for (m of visible(); track m.id) {
+      <li class="relative pl-8 pb-10">
+        <span class="absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
+              [class]="expanded().has(m.id) ? 'bg-accent' : 'bg-muted'"></span>
+
+        <div class="card card-hover">
+          <div class="flex items-start gap-3">
+            <button type="button" class="flex-1 text-left"
+                    [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
+              <p class="text-sm font-semibold text-accent">{{ m.period }} · {{ m.duration }}</p>
+              <h2 class="text-xl font-semibold text-content mt-1">{{ m.company }} — {{ m.role }}</h2>
+              <p class="text-sm text-muted mt-1">
+                {{ m.clientOrSector }} · {{ m.location }} · {{ m.contractType }}
+              </p>
+            </button>
+            <button type="button" class="btn-outline px-3 py-1 rounded-lg text-xs shrink-0"
+                    (click)="copy(m)">
+              {{ copiedId() === m.id ? i18n.translate('missions.copied') : i18n.translate('missions.copy') }}
+            </button>
+            <button type="button" class="text-muted px-1" aria-label="Déplier"
+                    [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
+              {{ expanded().has(m.id) ? '▼' : '▶' }}
+            </button>
+          </div>
+
+          @if (expanded().has(m.id)) {
+            <div class="mt-6 pt-6 border-t border-card-border space-y-6">
+              <div>
+                <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.context') }}</h2>
+                <p class="text-muted text-sm leading-relaxed">{{ m.context }}</p>
+                @if (m.methodology || m.teamSize) {
+                  <p class="text-subtle text-sm mt-2">
+                    {{ m.methodology }}@if (m.teamSize) { · {{ i18n.translate('missions.team') }} : {{ m.teamSize }} }
+                  </p>
+                }
+              </div>
+
+              <div>
+                <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.resp') }}</h2>
+                @for (r of m.responsibilities; track r.category) {
+                  <p class="text-sm font-semibold text-content mt-3">{{ r.category }}</p>
+                  <ul class="list-disc pl-5 text-sm text-muted space-y-1">
+                    @for (t of r.tasks; track t) {
+                      <li>{{ t }}</li>
+                    }
+                  </ul>
+                }
+              </div>
+
+              <div class="flex flex-wrap gap-2">
+                @for (t of m.techStack; track t) {
+                  <span class="badge">{{ t }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </li>
+    } @empty {
+      <li class="pl-8 text-muted"></li>
+    }
+  </ol>
+</section>

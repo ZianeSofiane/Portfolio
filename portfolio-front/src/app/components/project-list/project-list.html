@@ -1,0 +1,66 @@
+<section id="projects" class="py-16 px-6 max-w-7xl mx-auto">
+  <div class="text-center mb-12 mt-10">
+    <h2 class="section-title">{{ i18n.translate('projects.title') }}</h2>
+    <p class="section-subtitle">{{ i18n.translate('projects.subtitle') }}</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    @for (project of localizedProjects(); track project.id) {
+      <div class="card card-hover group relative flex flex-col justify-between hover:z-20"
+           (mousemove)="followCursor($event)">
+        @if (project.previewUrl) {
+          <div class="pointer-events-none absolute z-30 w-64 overflow-hidden rounded-xl border border-accent bg-page opacity-0 shadow-2xl shadow-accent/20 transition-opacity duration-200 group-hover:opacity-100"
+               [style]="'left: var(--x, 0); top: var(--y, 0); transform: translate(var(--tx, 16px), 16px)'">
+            <img [src]="'/logos/projects/' + project.previewUrl" [alt]="project.title" loading="lazy"
+              class="w-full h-auto object-contain" />
+          </div>
+        }
+
+        @if (project.imageUrl) {
+          <div class="absolute inset-0 -z-10 overflow-hidden rounded-2xl">
+            <img [alt]="project.title" [src]="'/logos/projects/' + project.imageUrl"
+              class="h-full w-full object-cover object-center opacity-25 transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-page via-page/85 to-page/40"></div>
+          </div>
+        }
+
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-content">{{ project.title }}</h3>
+            <!--@if (project.featured) {
+              <span class="badge-accent">
+                    {{ i18n.translate('projects.featured') }}
+                  </span>
+            }-->
+          </div>
+          <p class="text-muted text-sm mb-6 leading-relaxed">{{ project.description }}</p>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            @for (projectSkill of project.projectSkills; track projectSkill.id) {
+              <span class="badge">
+                    {{ projectSkill.skill.name }}
+                    @if (projectSkill.version) {
+                      <span class="text-muted">({{ projectSkill.version }})</span>
+                    }
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-card-border flex items-center justify-between">
+          @if (project.githubUrl) {
+            <a [href]="project.githubUrl" target="_blank" class="link-accent text-sm font-medium flex items-center gap-1">
+              {{ i18n.translate('projects.source') }}
+            </a>
+          }
+          @if (project.demoUrl) {
+            <a [href]="project.demoUrl" target="_blank" class="link-subtle text-sm font-medium">
+              {{ i18n.translate('projects.demo') }}
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

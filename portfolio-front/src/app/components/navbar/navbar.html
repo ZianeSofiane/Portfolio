@@ -1,0 +1,34 @@
+<nav class="bg-nav border-b border-nav-border text-content sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <div class="flex items-center">
+        <a routerLink="/" fragment="hero" class="text-xl font-bold text-accent">Sofiane.dev</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8">
+        <a routerLink="/" fragment="resume" class="nav-link">{{ i18n.translate('nav.resume') }}</a>
+        <a routerLink="/" fragment="missions" class="nav-link">{{ i18n.translate('nav.missions') }}</a>
+        <a routerLink="/" fragment="projects" class="nav-link">{{ i18n.translate('nav.projects') }}</a>
+        <a routerLink="/" fragment="skills" class="nav-link">{{ i18n.translate('nav.skills') }}</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="button" (click)="i18n.toggleLanguage()"
+                class="btn-outline px-3 py-2 rounded-lg text-sm font-medium"
+                aria-label="Switch language">
+          {{ i18n.language() !== 'en' ? '🇬🇧 EN' : '🇫🇷 FR' }}
+        </button>
+        <button type="button" (click)="theme.toggle()"
+                class="btn-outline px-3 py-2 rounded-lg text-sm font-medium"
+                [attr.aria-label]="i18n.translate(theme.theme() === 'dark' ? 'theme.toLight' : 'theme.toDark')">
+          {{ theme.theme() === 'dark' ? '☀️' : '🌙' }}
+        </button>
+        <a href="mailto:zzianesofiane@gmail.com" aria-label="contact" class="btn-primary px-4 py-2 rounded-lg text-sm">
+          {{ i18n.translate('nav.contactMe') }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>

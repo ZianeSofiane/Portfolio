@@ -1,0 +1,62 @@
+<section id="hero" class="relative overflow-hidden min-h-[calc(100vh-4rem)] flex items-center px-6 pb-36">
+  <canvas #rain aria-hidden="true"
+          class="absolute inset-0 h-full w-full opacity-30 pointer-events-none mask-[linear-gradient(to_bottom,black_60%,transparent)]"></canvas>
+  <div class="relative max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-12"
+       [style.opacity]="opacity()" [style.transform]="transform()">
+    <div class="flex-1 text-center md:text-left">
+      <span class="badge-accent fade-in-up inline-flex items-center gap-2">
+        <span class="h-2 w-2 rounded-full bg-success animate-pulse"></span>
+        {{ i18n.translate('hero.status') }}
+      </span>
+      <h1 class="fade-in-up text-4xl md:text-6xl font-bold text-content mt-6" style="--delay: 100ms">Sofiane ZIANE</h1>
+      <p class="fade-in-up typing-caret text-xl md:text-2xl font-semibold text-accent mt-3 min-h-7" style="--delay: 200ms"
+         [attr.aria-label]="title()">{{ typedTitle() }}</p>
+      <div class="fade-in-up flex flex-wrap justify-center md:justify-start gap-3 mt-5" style="--delay: 250ms">
+        <a href="https://github.com/ZianeSofiane" target="_blank" rel="noopener noreferrer"
+           aria-label="GitHub" class="btn-outline glow rounded-full p-2.5">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/sofiane-ziane-a52814225/" target="_blank" rel="noopener noreferrer"
+           aria-label="LinkedIn" class="btn-outline glow rounded-full p-2.5">
+          <svg class="h-5 w-5" role="img" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+          </svg>
+        </a>
+        <a href="mailto:zzianesofiane@gmail.com" aria-label="Email" class="btn-outline glow rounded-full p-2.5">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+        </a>
+      </div>
+      <p class="fade-in-up text-justify text-muted text-lg mt-6 max-w-xl mx-auto md:mx-0" style="--delay: 300ms">{{ i18n.translate('hero.hook') }}</p>
+      <div class="fade-in-up flex flex-wrap justify-center md:justify-start gap-4 mt-8" style="--delay: 400ms">
+        <a routerLink="/" fragment="missions" class="btn-primary glow px-6 py-3 rounded-lg">{{ i18n.translate('hero.missions') }}</a>
+        <a routerLink="/" fragment="resume" class="btn-outline glow px-6 py-3 rounded-lg">{{ i18n.translate('hero.resume') }}</a>
+      </div>
+    </div>
+    <img src="me.jpg" alt="Sofiane ZIANE" width="320" height="320"
+         class="fade-in-up glow h-56 w-56 md:h-80 md:w-80 rounded-full object-cover object-[50%_30%] border-3 border-accent shadow-xl" style="--delay: 150ms" />
+  </div>
+  <div class="fade-in-up absolute bottom-20 inset-x-0 overflow-hidden mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
+       style="--delay: 600ms" [style.opacity]="opacity()" [attr.aria-label]="i18n.translate('hero.skills')">
+    <ul class="marquee-track flex w-max items-center gap-10">
+      @for (skill of skillService.skills(); track skill.id) {
+        <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
+        <span class="text-sm font-medium whitespace-nowrap">{{ skill.name }}</span>
+      }
+    </ul>
+  </div>
+
+  <a routerLink="/" fragment="resume" [attr.aria-label]="i18n.translate('hero.scroll')"
+     class="fade-in-up absolute bottom-6 left-1/2 -translate-x-1/2 text-accent hover:text-accent-soft transition-colors"
+     style="--delay: 800ms" [style.opacity]="opacity()">
+    <svg class="scroll-bounce h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </a>
+</section>

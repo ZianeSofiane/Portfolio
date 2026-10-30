@@ -1,0 +1,187 @@
+<section id="resume" class="resume-shell py-10 px-4 md:px-8">
+  <div class="w-full overflow-x-auto pb-4">
+    <div class="resume-paper" #paper>
+      <div class="resume-grid">
+        <aside class="resume-left">
+          <div class="photo-frame">
+            <div class="photo-placeholder"><img [src]="'me-cv.jpg'" class="w-full h-full object-cover object-[center_40%]" alt="Sofiane ZIANE"></div>
+          </div>
+          <h1 class="resume-name">Sofiane ZIANE</h1>
+          <p class="resume-role">{{ resume()[0]?.role }}</p>
+          <p class="resume-intro">
+            {{ resume()[0]?.intro }}
+          </p>
+          <ul class="resume-contact space-y-0.5">
+            <li>
+              <a [href]="'tel:' + resume()[0].contact.phone" class="flex items-center gap-3" aria-label="Number">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 5.5C21 14.0604 14.0604 21 5.5 21C5.11378 21 4.73086 20.9859 4.35172 20.9581C3.91662 20.9262 3.69906 20.9103 3.50103 20.7963C3.33701 20.7019 3.18146 20.5345 3.09925 20.364C3 20.1582 3 19.9181 3 19.438V16.6207C3 16.2169 3 16.015 3.06645 15.842C3.12515 15.6891 3.22049 15.553 3.3441 15.4456C3.48403 15.324 3.67376 15.255 4.05321 15.117L7.26005 13.9509C7.70153 13.7904 7.92227 13.7101 8.1317 13.7237C8.31637 13.7357 8.49408 13.7988 8.64506 13.9058C8.81628 14.0271 8.93713 14.2285 9.17882 14.6314L10 16C12.6499 14.7999 14.7981 12.6489 16 10L14.6314 9.17882C14.2285 8.93713 14.0271 8.81628 13.9058 8.64506C13.7988 8.49408 13.7357 8.31637 13.7237 8.1317C13.7101 7.92227 13.7904 7.70153 13.9509 7.26005L13.9509 7.26005L15.117 4.05321C15.255 3.67376 15.324 3.48403 15.4456 3.3441C15.553 3.22049 15.6891 3.12515 15.842 3.06645C16.015 3 16.2169 3 16.6207 3H19.438C19.9181 3 20.1582 3 20.364 3.09925C20.5345 3.18146 20.7019 3.33701 20.7963 3.50103C20.9103 3.69907 20.9262 3.91662 20.9581 4.35173C20.9859 4.73086 21 5.11378 21 5.5Z"/>
+                  </svg>
+                </div>
+                <span>{{ resume()[0].contact.phone }}</span>
+              </a>
+            </li>
+            <li>
+              <a [href]="'mailto:' + resume()[0].contact.email" class="flex items-center gap-3" aria-label="Email">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                </div>
+                <span>{{ resume()[0].contact.email }}</span>
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center gap-3">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" viewBox="0 0 511.985 511.985">
+                    <path d="M222,3.277C153.477,16.59,99.111,72.751,87.702,141.764c-6.79,41.231,1.13,81.857,21.702,116.271 c2.35,3.928,4.199,7.011,8.39,14l0.967,1.613c41.753,69.614,59.977,101.895,79.073,142.806l38.825,83.218 c7.659,16.416,31.001,16.419,38.664,0.004l34.965-74.901c19.287-41.357,37.562-74.11,79.19-144.553l1.062-1.797 c6.181-10.459,9.139-15.472,12.673-21.482c15.271-25.943,23.445-55.54,23.445-86.29C426.659,63.541,329.368-17.545,222,3.277z M366.44,235.307c-3.518,5.984-6.466,10.977-12.631,21.41l-1.062,1.797c-42.326,71.624-61.063,105.204-81.123,148.219 l-15.625,33.472l-19.5-41.795c-19.925-42.687-38.643-75.842-81.147-146.709l-0.967-1.613c-4.187-6.981-6.027-10.051-8.363-13.954 c-15.428-25.808-21.358-56.232-16.222-87.425c8.504-51.443,49.357-93.645,100.331-103.549 c80.922-15.693,153.862,45.096,153.862,125.49C383.993,193.74,377.88,215.872,366.44,235.307z" fill="currentColor"></path>
+                    <path d="M255.993,106.652c-35.355,0-64,28.645-64,64s28.645,64,64,64s64-28.645,64-64S291.348,106.652,255.993,106.652z M255.993,191.985c-11.791,0-21.333-9.542-21.333-21.333s9.542-21.333,21.333-21.333c11.791,0,21.333,9.542,21.333,21.333 S267.784,191.985,255.993,191.985z" fill="currentColor"></path>
+                  </svg>
+                </div>
+                <span>{{ resume()[0].contact.location }}</span>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-3">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.5-1.2-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C1.3 11.2 1 11.8 1 12.5V16c0 .6.4 1 1 1h2"/>
+                    <circle cx="7" cy="17" r="2"/>
+                    <path d="M9 17h6"/>
+                    <circle cx="17" cy="17" r="2"/>
+                  </svg>
+                </div>
+                <span>{{ resume()[0].contact.license }}</span>
+              </div>
+            </li>
+            <li>
+              <a [href]="resume()[0].contact.linkedin" class="flex items-center gap-3" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" role="img" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/>
+                  </svg>
+                </div>
+                <span class="break-all">linkedin.com/in/sofiane-ziane-a52814225/</span>
+              </a>
+            </li>
+            <li>
+              <a [href]="resume()[0].contact.github" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3" aria-label="GitHub">
+                <div class="w-4 h-4 shrink-0 flex items-center justify-center">
+                  <svg class="w-full h-full" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                  </svg>
+                </div>
+                <span>github.com/ZianeSofiane</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="resume-block">
+            <div class="space-y-5">
+              @if (resume()[0]; as r) {
+                @for (skill of r.skills; track skill.category) {
+                  <div>
+                    <h3>{{ skill.category }}</h3>
+                    <p [innerHTML]="skill.items"></p>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <div class="space-y-5">
+              @if (resume()[0]; as r) {
+                @for (interest of r.interests; track interest.category) {
+                  <div>
+                    <h3>{{ interest.category }}</h3>
+                    <p [innerHTML]="interest.items"></p>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </aside>
+
+        <main class="resume-right">
+          <div class="resume-section">
+            <h2 class="section-title">{{ i18n.translate('cv.xp') }}</h2>
+
+            <div class="timeline">
+              @if (resume()[0]; as r) {
+                @for (exp of r.experiences; track exp.company) {
+                  <div class="timeline-item">
+                    <div class="timeline-header">
+                      <div class="timeline-title">{{ exp.role }}</div>
+                      <div class="timeline-location">{{ exp.company }}, {{ exp.location }}</div>
+                    </div>
+
+                    <div class="timeline-body">
+                      @if (exp.clientOrSector || exp.period) {
+                        <div class="timeline-meta">
+                          @if (exp.clientOrSector) {
+                            <div class="meta-label">Client : {{ exp.clientOrSector }}</div>
+                          }
+                          @if (exp.period) {
+                            <div class="meta-date">{{ exp.period }}</div>
+                          }
+                        </div>
+                      }
+
+                      @if (exp.description) {
+                        <p>{{ exp.description }}</p>
+                      }
+
+                      @if (exp.tasks && exp.tasks.length > 0) {
+                        <ul>
+                          @for (task of exp.tasks; track task) {
+                            <li>{{ task }}</li>
+                          }
+                        </ul>
+                      }
+
+                      @if (exp.techStack && exp.techStack.length > 0) {
+                        <p><strong>{{ i18n.translate('cv.techEnv') }} : </strong> {{ exp.techStack.join(', ') }}</p>
+                      }
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h2 class="section-title">{{ i18n.translate('cv.degree') }}</h2>
+
+            <div class="timeline">
+              @if (resume()[0]; as r) {
+                @for (edu of r.education; track edu.title) {
+                  <div class="timeline-item">
+                    <div class="timeline-header">
+                      <div class="timeline-title">{{ edu.title }}</div>
+                      @if (edu.school) {
+                        <div class="timeline-location">{{ edu.school }}</div>
+                      }
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-actions">
+    <button type="button" class="download-button" [disabled]="generating()" (click)="downloadPdf()">
+      {{ generating() ? i18n.translate('cv.generating') : i18n.translate('cv.download') }}
+    </button>
+  </div>
+</section>
+
+
