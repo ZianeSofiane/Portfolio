@@ -1,8 +1,7 @@
 <section id="hero" class="relative overflow-hidden min-h-[calc(100vh-4rem)] flex items-center px-6 pb-36">
   <canvas #rain aria-hidden="true"
           class="absolute inset-0 h-full w-full opacity-30 pointer-events-none mask-[linear-gradient(to_bottom,black_60%,transparent)]"></canvas>
-  <div class="relative max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-12"
-       [style.opacity]="opacity()" [style.transform]="transform()">
+  <div class="relative max-w-6xl mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-12">
     <div class="flex-1 text-center md:text-left">
       <span class="badge-accent fade-in-up inline-flex items-center gap-2">
         <span class="h-2 w-2 rounded-full bg-success animate-pulse"></span>
@@ -42,7 +41,7 @@
          class="fade-in-up glow h-56 w-56 md:h-80 md:w-80 rounded-full object-cover object-[50%_30%] border-3 border-accent shadow-xl mt-3" style="--delay: 150ms" />
   </div>
   <div class="fade-in-up absolute bottom-20 inset-x-0 overflow-hidden mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
-       style="--delay: 600ms" [style.opacity]="opacity()" [attr.aria-label]="i18n.translate('hero.skills')">
+       style="--delay: 600ms" [attr.aria-label]="i18n.translate('hero.skills')">
     <ul class="marquee-track flex w-max items-center gap-10">
       @for (skill of skillService.skills(); track skill.id) {
         <img [src]="this.skillService.getIconPath(skill.name)" alt="" class="h-6 w-6" />
@@ -53,7 +52,7 @@
 
   <a routerLink="/" fragment="resume" [attr.aria-label]="i18n.translate('hero.scroll')"
      class="fade-in-up absolute bottom-6 left-1/2 -translate-x-1/2 text-accent hover:text-accent-soft transition-colors"
-     style="--delay: 800ms" [style.opacity]="opacity()">
+     style="--delay: 800ms">
     <svg class="scroll-bounce h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M6 9l6 6 6-6" />
