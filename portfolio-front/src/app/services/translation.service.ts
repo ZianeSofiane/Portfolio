@@ -7,7 +7,7 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
     'theme.toLight': 'Passer en mode clair',
     'theme.toDark': 'Passer en mode sombre',
     'hero.status': 'Disponible pour de nouvelles missions',
-    'hero.title': 'Développeur Full-Stack Java / Angular',
+    'hero.title': 'Développeur Full Stack Java / Angular',
     'hero.hook':
       "Fort de 3 ans d'expérience en environnements industriels et agiles (SAFe), je conçois et maintiens des applications web robustes et scalables, de la modélisation backend (Java / Spring Boot) jusqu'aux interfaces utilisateurs dynamiques (Angular)",
     'hero.missions': 'Voir mes missions',
@@ -53,7 +53,7 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
     'theme.toLight': 'Switch to light mode',
     'theme.toDark': 'Switch to dark mode',
     'hero.status': 'Available for new missions',
-    'hero.title': 'Java / Angular Full-Stack Developer',
+    'hero.title': 'Java / Angular Full Stack Developer',
     'hero.hook':
       'With 3 years of experience in industrial and agile environments (SAFe), I design and maintain robust, scalable web applications, ranging from backend modeling (Java / Spring Boot) to dynamic user interfaces (Angular)',
     'hero.missions': 'View my missions',
