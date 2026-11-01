@@ -271,7 +271,7 @@ public class DataInitializer {
 
         Mission sncfGisement = new Mission(
                 "sncf-gisement",
-                Map.of("fr", "Développeur full-stack Java/Angular", "en", "Java/Angular full-stack developer"),
+                Map.of("fr", "Développeur Full Stack Java/Angular", "en", "Java/Angular Full Stack developer"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF (Direction du Matériel / Réseau) — Gisement de Données", "en", "SNCF (Equipment / Network Directorate) — Data Repository"),
                 Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
@@ -287,7 +287,7 @@ public class DataInitializer {
                                 Map.of("fr", "Frontend : Angular 15, TypeScript, PrimeNG (tableaux de données complexes et formulaires dynamiques)", "en", "Frontend: Angular 15, TypeScript, PrimeNG (complex data tables and dynamic forms)"),
                                 Map.of("fr", "Qualité & DevOps : IntelliJ (SonarLint/SonarQube), GitLab CI, Jenkins (pipelines CI/CD d’automatisation des tests et déploiements)", "en", "Quality & DevOps: IntelliJ (SonarLint/SonarQube), GitLab CI, Jenkins (CI/CD test and deployment automation pipelines)")
                         )),
-                        new Responsibility(null, Map.of("fr", "Refonte & développement full-stack (binôme Front / Back)", "en", "Full-Stack redesign & development (Front/Back pair)"), List.of(
+                        new Responsibility(null, Map.of("fr", "Refonte & développement full stack (binôme Front / Back)", "en", "Full stack redesign & development (Front/Back pair)"), List.of(
                                 Map.of("fr", "Développement découplé et coordonné en équipe (alignement collaboratif des DTOs, des interfaces et des endpoints REST entre Front et Back)", "en", "Decoupled and coordinated team development (collaborative alignment of DTOs, interfaces, and REST endpoints between Front-end and Back-end)"),
                                 Map.of("fr", "Implémentation d’un système complexe d’espace de travail (workflow de validation) : isolation des modifications d’incidents avant validation par des super-utilisateurs (gestion fine des droits et profils)", "en", "Implementation of a complex workspace system (validation workflow): isolation of incident modifications prior to validation by super-users (fine-grained management of rights and profiles)")
                         )),
@@ -378,13 +378,13 @@ public class DataInitializer {
         resume.setName("Sofiane ZIANE");
 
         resume.setRole(Map.of(
-                "fr", "Développeur Full-Stack Java / Angular",
-                "en", "Full-Stack Java / Angular Developer"
+                "fr", "Développeur Full Stack Java / Angular",
+                "en", "Full Stack Java / Angular Developer"
         ));
 
         resume.setIntro(Map.of(
-                "fr", "Développeur Full-Stack Java / Spring Boot et Angular avec 3 ans d'expérience en environnements industriels et agiles (SAFe). Habitué aux pipelines CI/CD et à la maintenance critique, je conçois des applications robustes et scalables.",
-                "en", "Full-Stack Java / Spring Boot and Angular Developer with 3 years of experience in industrial and agile environments (SAFe). Experienced in CI/CD pipelines and critical maintenance, I design robust and scalable applications."
+                "fr", "Développeur Full Stack Java / Spring Boot et Angular avec 3 ans d'expérience en environnements industriels et agiles (SAFe). Habitué aux pipelines CI/CD et à la maintenance critique, je conçois des applications robustes et scalables.",
+                "en", "Full Stack Java / Spring Boot and Angular Developer with 3 years of experience in industrial and agile environments (SAFe). Experienced in CI/CD pipelines and critical maintenance, I design robust and scalable applications."
         ));
 
         resume.setContact(new ResumeDto.ContactDto(
@@ -398,11 +398,11 @@ public class DataInitializer {
 
         resume.setSkills(List.of(
                 new ResumeDto.SkillSectionDto(
-                        Map.of("fr", "Langages & Frameworks", "en", "Languages & Frameworks"),
+                        Map.of("fr", "Langages & frameworks", "en", "Languages & frameworks"),
                         "Java, Spring Boot,<br />Angular, TypeScript, PL/SQL,<br />HTML/CSS, JavaScript, Flutter"
                 ),
                 new ResumeDto.SkillSectionDto(
-                        Map.of("fr", "Outils DevOps & CI/CD", "en", "DevOps & CI/CD Tools"),
+                        Map.of("fr", "Outils DevOps & CI/CD", "en", "DevOps & CI/CD tools"),
                         "GitLab CI, Jenkins, SonarQube,<br />Jira, Apache Tomcat, Azure"
                 )
         ));
@@ -413,7 +413,7 @@ public class DataInitializer {
                         Map.of("fr", "Français (Langue maternelle)<br/>Anglais B2", "en", "French (native language)<br/>English B2")
                 ),
                 new ResumeDto.InterestDto(
-                        Map.of("fr", "Soft Skills", "en", "Soft Skills"),
+                        Map.of("fr", "Soft skills", "en", "Soft skills"),
                         Map.of("fr", "Esprit d'analyse, Autonomie,<br/>", "en", "Analytical mind, Autonomy<br/>")
                 ),
                 new ResumeDto.InterestDto(
@@ -453,14 +453,14 @@ public class DataInitializer {
                         List.of("Java", "PL/SQL", "KSL Studio", "Shell", "Azure", "Jira")
                 ),
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Développeur full-Stack", "en", "Full-Stack developer"),
+                        Map.of("fr", "Développeur Full Stack", "en", "Full Stack developer"),
                         "Sopra Steria",
                         "Saint-Denis (Distance / Lille)",
                         Map.of("fr", "SNCF Réseau — Gisement de données", "en", "SNCF Réseau — Data Repository"),
                         Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
                         Map.of("fr", "Refonte complète d'un gisement de données centralisé (source unique de vérité) pour les incidents et défaillances de la SNCF.", "en", "Complete redesign of a centralized data repository (single source of truth) for all SNCF incidents and failures."),
                         List.of(
-                                Map.of("fr", "Développement Full-Stack : Spring Boot / Angular 15", "en", "Full-stack development: Spring Boot / Angular 15"),
+                                Map.of("fr", "Développement full stack : Spring Boot / Angular 15", "en", "Full stack development: Spring Boot / Angular 15"),
                                 Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation de modifications (parent/enfant)", "en", "Design of a temporal dependency engine and modifications validation rules (parent/child)"),
                                 Map.of("fr", "Rédaction des spécifications techniques détaillées (STD), plans de tests et revues de code (GitLab MR)", "en", "Drafting detailed technical specifications (DTS), test plans, and code reviews (GitLab MR)")
                         ),
