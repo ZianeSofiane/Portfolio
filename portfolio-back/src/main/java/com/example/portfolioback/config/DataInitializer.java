@@ -20,8 +20,8 @@ public class DataInitializer {
                                TranslationService translationService, MissionRepository missionRepository, ResumeRepository resumeRepository) {
         return args -> {
             initSkillsData(projectRepository, projectSkillRepository, skillRepository, translationService);
-            initMissionsData(translationService, missionRepository);
-            initResumeData(translationService, resumeRepository);
+            initMissionsData(missionRepository);
+            initResumeData(resumeRepository);
         };
     }
 
@@ -62,7 +62,7 @@ public class DataInitializer {
         portfolio.setFeatured(true);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
         portfolio.setImageUrl("portfolio.png");
-        portfolio = projectRepository.save(portfolio); // Sauvegarde immédiate pour obtenir un ID
+        portfolio = projectRepository.save(portfolio);
 
         ProjectSkill pfJava = createOrUpdateProjectSkill(projectSkillRepository, portfolio, java, "25");
         ProjectSkill pfSpring = createOrUpdateProjectSkill(projectSkillRepository, portfolio, springBoot, "4.1.1");
@@ -99,7 +99,7 @@ public class DataInitializer {
         javaFxProject.setGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx");
         javaFxProject.setImageUrl("javaFx.png");
         javaFxProject.setPreviewUrl("javaFx.gif");
-        javaFxProject = projectRepository.save(javaFxProject); // Sauvegarde immédiate
+        javaFxProject = projectRepository.save(javaFxProject);
 
         ProjectSkill fxJavaFx = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, javaFx, null);
         ProjectSkill fxCss = createOrUpdateProjectSkill(projectSkillRepository, javaFxProject, css, null);
@@ -115,7 +115,7 @@ public class DataInitializer {
         flutterProject.setGithubUrl("https://github.com/ZianeSofiane/Flutter_App");
         flutterProject.setImageUrl("soap.png");
         flutterProject.setPreviewUrl("flutter.gif");
-        flutterProject = projectRepository.save(flutterProject); // Sauvegarde immédiate
+        flutterProject = projectRepository.save(flutterProject);
 
         ProjectSkill ftFlutter = createOrUpdateProjectSkill(projectSkillRepository, flutterProject, flutter, null);
         addProjectSkills(flutterProject, ftFlutter);
@@ -147,12 +147,12 @@ public class DataInitializer {
         project.setProjectSkills(existingSkills);
     }
 
-    private void initMissionsData(TranslationService translationService, MissionRepository missionRepository){
+    private void initMissionsData(MissionRepository missionRepository){
         Mission cgiTma = new Mission(
                 "cgi-tma",
                 Map.of(
-                        "fr", "Ingénieur Études et Développement",
-                        "en", "Software Engineer / Developer"
+                        "fr", "Ingénieur études et développement",
+                        "en", "Software engineer / developer"
                 ),
                 "Sopra Steria",
                 Map.of(
@@ -185,8 +185,8 @@ public class DataInitializer {
                         new Responsibility(
                                 null,
                                 Map.of(
-                                        "fr", "Architecture & Environnement technique",
-                                        "en", "Architecture & Technical Environment"
+                                        "fr", "Architecture & environnement technique",
+                                        "en", "Architecture & technical environment"
                                 ),
                                 List.of(
                                         Map.of(
@@ -206,8 +206,8 @@ public class DataInitializer {
                         new Responsibility(
                                 null,
                                 Map.of(
-                                        "fr", "Études d’impact & Chiffrage",
-                                        "en", "Impact Studies & Estimation"
+                                        "fr", "Études d’impact & chiffrage",
+                                        "en", "Impact studies & estimation"
                                 ),
                                 List.of(
                                         Map.of(
@@ -227,8 +227,8 @@ public class DataInitializer {
                         new Responsibility(
                                 null,
                                 Map.of(
-                                        "fr", "Développement & Qualité",
-                                        "en", "Development & Quality"
+                                        "fr", "Développement & qualité",
+                                        "en", "Development & quality"
                                 ),
                                 List.of(
                                         Map.of(
@@ -271,7 +271,7 @@ public class DataInitializer {
 
         Mission sncfGisement = new Mission(
                 "sncf-gisement",
-                Map.of("fr", "Ingénieur Études et Développement Full-Stack", "en", "Full-Stack Software Engineer"),
+                Map.of("fr", "Développeur full-stack Java/Angular", "en", "Java/Angular full-stack developer"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF (Direction du Matériel / Réseau) — Gisement de Données", "en", "SNCF (Equipment / Network Directorate) — Data Repository"),
                 Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
@@ -282,25 +282,25 @@ public class DataInitializer {
                 Map.of("fr", "Hybride : Cycle en V (refonte globale) puis Agile (évolutions), pilotage Jira, rituels dev quotidiens, revue de code croisée", "en", "Hybrid: V-Model (global redesign) then Agile (evolutions), Jira management, daily dev rituals, cross-code review"),
                 Map.of("fr", "Refonte complète et évolutions d'un gisement de données centralisé regroupant l'ensemble des incidents, défaillances et ressources de la SNCF. L'application sert de « Source Unique de Vérité » (Single Source of Truth) : toute modification validée sur un élément est propagée en temps réel via des APIs REST aux sous-applications de l'écosystème SNCF.", "en", "Complete redesign and enhancements of a centralized data repository aggregating all SNCF incidents, failures, and resources. The application serves as a 'Single Source of Truth': any validated modification on an item is propagated in real-time via REST APIs to sub-applications within the SNCF ecosystem."),
                 List.of(
-                        new Responsibility(null, Map.of("fr", "Architecture & Stack technique", "en", "Architecture & Technical Stack"), List.of(
+                        new Responsibility(null, Map.of("fr", "Architecture & stack technique", "en", "Architecture & technical stack"), List.of(
                                 Map.of("fr", "Backend : Java 17, Spring Boot, Spring Data JPA (CrudRepository), PostgreSQL", "en", "Backend: Java 17, Spring Boot, Spring Data JPA (CrudRepository), PostgreSQL"),
                                 Map.of("fr", "Frontend : Angular 15, TypeScript, PrimeNG (tableaux de données complexes et formulaires dynamiques)", "en", "Frontend: Angular 15, TypeScript, PrimeNG (complex data tables and dynamic forms)"),
                                 Map.of("fr", "Qualité & DevOps : IntelliJ (SonarLint/SonarQube), GitLab CI, Jenkins (pipelines CI/CD d’automatisation des tests et déploiements)", "en", "Quality & DevOps: IntelliJ (SonarLint/SonarQube), GitLab CI, Jenkins (CI/CD test and deployment automation pipelines)")
                         )),
-                        new Responsibility(null, Map.of("fr", "Refonte & Développement Full-Stack (binôme Front / Back)", "en", "Full-Stack Redesign & Development (Front/Back pair)"), List.of(
-                                Map.of("fr", "Développement découplé et coordonné en binôme (alignement des DTOs, interfaces et endpoints REST entre dev Front et dev Back)", "en", "Decoupled and coordinated pair development (alignment of DTOs, interfaces, and REST endpoints between Front and Back devs)"),
-                                Map.of("fr", "Implémentation d’un système complexe d’Espace de Travail (workflow de validation) : isolation des modifications d’incidents avant validation par des super-utilisateurs (gestion fine des droits et profils)", "en", "Implementation of a complex Workspace system (validation workflow): isolation of incident modifications before validation by super-users (fine-grained rights and profiles management)")
+                        new Responsibility(null, Map.of("fr", "Refonte & développement full-stack (binôme Front / Back)", "en", "Full-Stack redesign & development (Front/Back pair)"), List.of(
+                                Map.of("fr", "Développement découplé et coordonné en équipe (alignement collaboratif des DTOs, des interfaces et des endpoints REST entre Front et Back)", "en", "Decoupled and coordinated team development (collaborative alignment of DTOs, interfaces, and REST endpoints between Front-end and Back-end)"),
+                                Map.of("fr", "Implémentation d’un système complexe d’espace de travail (workflow de validation) : isolation des modifications d’incidents avant validation par des super-utilisateurs (gestion fine des droits et profils)", "en", "Implementation of a complex workspace system (validation workflow): isolation of incident modifications prior to validation by super-users (fine-grained management of rights and profiles)")
                         )),
-                        new Responsibility(null, Map.of("fr", "Algorithmique & Contraintes métiers (relations Parent/Enfant)", "en", "Algorithms & Business Constraints (Parent/Child relations)"), List.of(
+                        new Responsibility(null, Map.of("fr", "Algorithmique & contraintes métiers (relations parent/enfant)", "en", "Algorithms & business constraints (parent/child relations)"), List.of(
                                 Map.of("fr", "Conception du moteur de dépendances temporelles entre défaillances (causes) et incidents (conséquences)", "en", "Design of the temporal dependency engine between failures (causes) and incidents (consequences)"),
                                 Map.of("fr", "Algorithmes d’ajustement automatique des fenêtres de dates (superposition forcée si chevauchement) et blocage préventif avec messages d’erreur explicites", "en", "Algorithms for automatic date window adjustment (forced overlap if overlapping) and preventive blocking with explicit error messages")
                         )),
-                        new Responsibility(null, Map.of("fr", "Cadrage, Négociation & Gestion de crise métier", "en", "Scoping, Negotiation & Business Crisis Management"), List.of(
+                        new Responsibility(null, Map.of("fr", "Cadrage, négociation & gestion de crise métier", "en", "Scoping, Negotiation & business crisis management"), List.of(
                                 Map.of("fr", "Rédaction des Spécifications Techniques Détaillées (STD), plans de tests et chiffrages associés", "en", "Drafting of Detailed Technical Specifications (DTS), test plans, and associated estimates"),
                                 Map.of("fr", "Animation de réunions de cadrage technique pour résoudre les incohérences métier (contraintes temporelles contradictoires demandées par les utilisateurs)", "en", "Facilitation of technical scoping meetings to resolve business inconsistencies (contradictory time constraints requested by users)"),
                                 Map.of("fr", "Arbitrage des périmètres, renégociation de faisabilité et compléments de chiffrage avec les équipes fonctionnelles", "en", "Scope arbitration, feasibility renegotiation, and additional estimations with functional teams")
                         )),
-                        new Responsibility(null, Map.of("fr", "Qualité du code & Collaboration", "en", "Code Quality & Collaboration"), List.of(
+                        new Responsibility(null, Map.of("fr", "Qualité du code & collaboration", "en", "Code quality & collaboration"), List.of(
                                 Map.of("fr", "Revue de code rigoureuse (MR GitLab) en pair-reviewing entre développeurs et validation du Lead Dev", "en", "Rigorous code review (GitLab MR) in peer-reviewing between developers and validation by the Lead Dev")
                         ))
                 ),
@@ -310,7 +310,7 @@ public class DataInitializer {
 
         Mission sncfJira = new Mission(
                 "sncf-jira",
-                Map.of("fr", "Ingénieur Études et Développement (Stage de fin d’études)", "en", "Software Engineer (Master's Internship)"),
+                Map.of("fr", "Ingénieur études et développement (Stage de fin d’études)", "en", "Software engineer (Master's internship)"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF Réseau — Centre de Services", "en", "SNCF Réseau — Service Center"),
                 Map.of("fr", "Mars 2022 – Juillet 2022", "en", "March 2022 – July 2022"),
@@ -321,22 +321,22 @@ public class DataInitializer {
                 Map.of("fr", "Kanban / Agile, intervention multi-projets en centre de services", "en", "Kanban / Agile, multi-project intervention in a service center"),
                 Map.of("fr", "Stage de fin d'études au sein du Centre de Services SNCF Réseau, axé sur l'automatisation des processus internes, la modernisation des stacks logicielles legacy, la refonte des infrastructures de build et le suivi décisionnel de la performance.", "en", "Master's internship within the SNCF Réseau Service Center, focusing on internal process automation, modernization of legacy software stacks, build infrastructure redesign, and decision-making performance tracking."),
                 List.of(
-                        new Responsibility(null, Map.of("fr", "Stack & Outils", "en", "Stack & Tools"), List.of(
+                        new Responsibility(null, Map.of("fr", "Stack & outils", "en", "Stack & tools"), List.of(
                                 Map.of("fr", "Langages & frameworks : Java, APIs REST Jira", "en", "Languages & frameworks: Java, Jira REST APIs"),
-                                Map.of("fr", "DevOps & Build : Artifactory, Sonatype Nexus, Jenkins (Jenkinsfile / pipelines CI-CD), Git", "en", "DevOps & Build: Artifactory, Sonatype Nexus, Jenkins (Jenkinsfile / CI-CD pipelines), Git"),
+                                Map.of("fr", "DevOps & build : Artifactory, Sonatype Nexus, Jenkins (Jenkinsfile / pipelines CI-CD), Git", "en", "DevOps & build: Artifactory, Sonatype Nexus, Jenkins (Jenkinsfile / CI-CD pipelines), Git"),
                                 Map.of("fr", "Data & BI : Power BI, Power Query (modélisation de données et rapports KPIs)", "en", "Data & BI: Power BI, Power Query (data modeling and KPI reports)")
                         )),
-                        new Responsibility(null, Map.of("fr", "Infrastructure DevOps & Migration d’artefacts (Nexus => Artifactory)", "en", "DevOps Infrastructure & Artifact Migration (Nexus => Artifactory)"), List.of(
+                        new Responsibility(null, Map.of("fr", "Infrastructure devOps & migration d’artefacts (Nexus => Artifactory)", "en", "DevOps infrastructure & artifact migration (Nexus => Artifactory)"), List.of(
                                 Map.of("fr", "Migration de la gestion des dépôts d’artefacts logiciels pour plus de 30 projets du centre de services", "en", "Migration of software artifact repository management for over 30 service center projects"),
                                 Map.of("fr", "Audit et mise à jour des scripts de builds (Jenkinsfile) pour rediriger la résolution de dépendances vers Artifactory", "en", "Audit and update of build scripts (Jenkinsfile) to redirect dependency resolution to Artifactory"),
                                 Map.of("fr", "Montée de version des bibliothèques et validation de la non-régression via la réexécution des pipelines complets (Checkout, Build, Test, Archive, Deploy)", "en", "Library upgrades and non-regression validation through re-execution of full pipelines (Checkout, Build, Test, Archive, Deploy)"),
                                 Map.of("fr", "Coordination : prise d’initiative sur le pilotage du sujet, puis délégation et répartition des charges avec 2 autres développeurs", "en", "Coordination: initiative on topic management, followed by delegation and workload distribution with 2 other developers")
                         )),
-                        new Responsibility(null, Map.of("fr", "Refactoring & Modernisation de code (projet Laplace — gestion de chantiers ferroviaires)", "en", "Code Refactoring & Modernization (Laplace project — rail construction management)"), List.of(
+                        new Responsibility(null, Map.of("fr", "Refactoring & modernisation de code (projet Laplace — gestion de chantiers ferroviaires)", "en", "Code refactoring & modernization (Laplace project — rail construction management)"), List.of(
                                 Map.of("fr", "Migration applicative de Java 7 vers Java 8", "en", "Application migration from Java 7 to Java 8"),
                                 Map.of("fr", "Refactoring et optimisation des traitements complexes via l’API Streams et les Lambdas", "en", "Refactoring and optimization of complex processing via Streams API and Lambdas")
                         )),
-                        new Responsibility(null, Map.of("fr", "Automatisation d’outillage interne (projet Pitaya — Java 17)", "en", "Internal Tooling Automation (Pitaya project — Java 17)"), List.of(
+                        new Responsibility(null, Map.of("fr", "Automatisation d’outillage interne (projet Pitaya — Java 17)", "en", "Internal tooling automation (Pitaya project — Java 17)"), List.of(
                                 Map.of("fr", "Conception d'un service d'ingestion de données via l'API REST Jira pour extraire les KPIs des tickets, les stocker en base et alimenter les tableaux de bord Power BI", "en", "Design of a data ingestion service via the Jira REST API to extract ticket KPIs, store them in a database, and power Power BI dashboards"),
                                 Map.of("fr", "Conception d’un service Java d’automatisation de génération de tickets Jira via les APIs REST de la suite Atlassian", "en", "Design of a Java service for automated Jira ticket generation via Atlassian REST APIs"),
                                 Map.of("fr", "Environnement de test sécurisé avec Mockoon (bouchonnage d’APIs REST) et Mockito (tests unitaires) pour valider les flux sans impacter l’instance Jira de production", "en", "Secure test environment with Mockoon (REST API stubbing) and Mockito (unit tests) to validate workflows without impacting the production Jira instance")
@@ -373,7 +373,7 @@ public class DataInitializer {
         missionRepository.saveAll(List.of(cgiTma, sncfGisement, sncfJira, prodival));
     }
 
-    private void initResumeData(TranslationService translationService, ResumeRepository resumeRepository){
+    private void initResumeData(ResumeRepository resumeRepository){
         Resume resume = resumeRepository.findByName("Sofiane ZIANE").orElseGet(Resume::new);
         resume.setName("Sofiane ZIANE");
 

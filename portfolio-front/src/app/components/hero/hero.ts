@@ -33,11 +33,6 @@ export class Hero {
   // Full text on the server and with reduced motion; typed char by char in the browser
   readonly typedTitle = signal(this.title());
 
-  // 0 at the top of the page, 1 once the hero has been scrolled out of the viewport
-  private readonly progress = signal(0);
-  readonly opacity = computed(() => 1 - this.progress());
-  readonly transform = computed(() => `translateY(${-this.progress() * 120}px)`);
-
   constructor() {
     afterNextRender(() => this.startCodeRain());
 
@@ -57,17 +52,6 @@ export class Hero {
       }, 60);
       onCleanup(() => clearInterval(timer));
     });
-
-    if (this.isBrowser) {
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const onScroll = () => {
-        const ratio = Math.min(window.scrollY / (window.innerHeight * 0.6), 1);
-        this.progress.set(reduced ? 0 : ratio);
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      this.destroyRef.onDestroy(() => window.removeEventListener('scroll', onScroll));
-      onScroll();
-    }
   }
 
   private startCodeRain(): void {
