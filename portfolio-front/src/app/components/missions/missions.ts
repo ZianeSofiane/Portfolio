@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { LocalizedMission } from '../../models/mission.model';
 import { MissionService } from '../../services/mission.service';
+import { formatMissionPeriod, MissionPeriodPipe } from '../../pipes/mission-period.pipe';
 import { SkillService } from '../../services/skill.service';
 import { TranslationService } from '../../services/translation.service';
 
@@ -16,6 +17,7 @@ const hasTech = (m: LocalizedMission, ...terms: string[]) =>
 @Component({
   selector: 'app-missions',
   standalone: true,
+  imports: [MissionPeriodPipe],
   templateUrl: './missions.html',
 })
 export class Missions {
@@ -24,21 +26,22 @@ export class Missions {
   protected skillService = inject(SkillService);
 
   missions = computed<LocalizedMission[]>(() =>
-    this.missionService.missions().map((m) => ({
-      ...m,
-      role: this.i18n.localize(m.role),
-      clientOrSector: this.i18n.localize(m.clientOrSector),
-      period: this.i18n.localize(m.period),
-      duration: this.i18n.localize(m.duration),
-      teamSize: this.i18n.localize(m.teamSize),
-      methodology: this.i18n.localize(m.methodology),
-      context: this.i18n.localize(m.context),
-      responsibilities: m.responsibilities?.map((r) => ({
-        ...r,
-        category: this.i18n.localize(r.category),
-        tasks: r.tasks?.map((t) => this.i18n.localize(t)),
+    [...this.missionService.missions()]
+      .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
+      .map((m) => ({
+        ...m,
+        role: this.i18n.localize(m.role),
+        clientOrSector: this.i18n.localize(m.clientOrSector),
+        duration: this.i18n.localize(m.duration),
+        teamSize: this.i18n.localize(m.teamSize),
+        methodology: this.i18n.localize(m.methodology),
+        context: this.i18n.localize(m.context),
+        responsibilities: m.responsibilities?.map((r) => ({
+          ...r,
+          category: this.i18n.localize(r.category),
+          tasks: r.tasks?.map((t) => this.i18n.localize(t)),
+        })),
       })),
-    })),
   );
 
   readonly allFilter: MissionFilter[] = [{ key: 'all', label: 'Tous', match: () => true }];
@@ -79,7 +82,7 @@ export class Missions {
     const header = [
       `${m.company} — ${m.role}`,
       [m.clientOrSector, m.location, m.contractType].filter(Boolean).join(' · '),
-      `${m.period} · ${m.duration}`,
+      `${formatMissionPeriod(m.startDate, m.endDate, this.i18n.language())} · ${m.duration}`,
       [m.methodology, m.teamSize && `Équipe : ${m.teamSize}`].filter(Boolean).join(' · '),
     ].filter(Boolean);
     const responsibilities = m.responsibilities.map(

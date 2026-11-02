@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -159,10 +160,8 @@ public class DataInitializer {
                         "fr", "CGI Finance — TMA Banque & Assurance",
                         "en", "CGI Finance — Banking & Insurance Maintenance & Evolution"
                 ),
-                Map.of(
-                        "fr", "Février 2024 – Février 2025",
-                        "en", "February 2024 – February 2025"
-                ),
+                LocalDate.of(2024, 2, 1),
+                LocalDate.of(2025, 2, 1),
                 Map.of(
                         "fr", "1 an",
                         "en", "1 year"
@@ -274,7 +273,8 @@ public class DataInitializer {
                 Map.of("fr", "Développeur Full Stack Java/Angular", "en", "Java/Angular Full Stack developer"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF (Direction du Matériel / Réseau) — Gisement de Données", "en", "SNCF (Equipment / Network Directorate) — Data Repository"),
-                Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
+                LocalDate.of(2022, 8, 1),
+                LocalDate.of(2024, 2, 1),
                 Map.of("fr", "1 an 7 mois", "en", "1 year 7 months"),
                 "Saint-Denis (à distance depuis Lille)",
                 Mission.ContractType.CDI,
@@ -313,7 +313,8 @@ public class DataInitializer {
                 Map.of("fr", "Ingénieur études et développement (Stage de fin d’études)", "en", "Software engineer (Master's internship)"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF Réseau — Centre de Services", "en", "SNCF Réseau — Service Center"),
-                Map.of("fr", "Mars 2022 – Juillet 2022", "en", "March 2022 – July 2022"),
+                LocalDate.of(2022, 3, 1),
+                LocalDate.of(2022, 7, 1),
                 Map.of("fr", "5 mois", "en", "5 months"),
                 "Lille / Saint-Denis",
                 Mission.ContractType.Stage,
@@ -355,7 +356,8 @@ public class DataInitializer {
                 Map.of("fr", "Développeur web", "en", "Web Developer"),
                 "Prodival",
                 Map.of("fr", "Bombardier, Arcelor Mittal, CFT", "en", "Bombardier, Arcelor Mittal, CFT"),
-                Map.of("fr", "Avril 2019 – Mai 2019", "en", "April 2019 – May 2019"),
+                LocalDate.of(2019, 4, 1),
+                LocalDate.of(2019, 5, 1),
                 Map.of("fr", "2 mois", "en", "2 months"),
                 "Rosult",
                 Mission.ContractType.Stage,

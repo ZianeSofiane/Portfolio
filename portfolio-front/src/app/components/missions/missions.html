@@ -33,7 +33,7 @@
           <div class="mission-card-header flex items-start gap-3">
             <button type="button" class="mission-card-title flex-1 text-left"
                     [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
-              <p class="text-sm font-semibold text-accent">{{ m.period }} · {{ m.duration }}</p>
+              <p class="text-sm font-semibold text-accent">{{ m.startDate | missionPeriod: m.endDate : i18n.language() }} · {{ m.duration }}</p>
               <h2 class="text-xl font-semibold text-content mt-1">{{ m.company }} — {{ m.role }}</h2>
               <p class="text-sm text-muted mt-1">
                 {{ m.clientOrSector }} · {{ m.location }} · {{ m.contractType }}

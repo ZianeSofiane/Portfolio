@@ -1,5 +1,6 @@
 package com.example.portfolioback.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record MissionDto(
@@ -7,7 +8,8 @@ public record MissionDto(
         String role,
         String company,
         String clientOrSector,
-        String period,
+        LocalDate startDate,
+        LocalDate endDate,
         String duration,
         String location,
         String contractType,
