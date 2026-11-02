@@ -5,7 +5,8 @@ export interface Mission {
   role: LocalizedText;
   company: string;
   clientOrSector?: LocalizedText;
-  period: LocalizedText;
+  startDate: string;
+  endDate?: string | null;
   duration: LocalizedText;
   location: string;
   contractType: 'CDI' | 'CDD' | 'Stage' | 'Freelance';
@@ -24,7 +25,6 @@ export type LocalizedMission = Omit<
   Mission,
   | 'role'
   | 'clientOrSector'
-  | 'period'
   | 'duration'
   | 'teamSize'
   | 'methodology'
@@ -33,7 +33,6 @@ export type LocalizedMission = Omit<
 > & {
   role: string;
   clientOrSector?: string;
-  period: string;
   duration: string;
   teamSize?: string;
   methodology?: string;
