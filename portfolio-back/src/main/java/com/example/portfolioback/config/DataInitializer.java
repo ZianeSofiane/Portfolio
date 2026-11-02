@@ -338,7 +338,8 @@ public class DataInitializer {
                         )),
                         new Responsibility(null, Map.of("fr", "Automatisation d’outillage interne (projet Pitaya — Java 17)", "en", "Internal tooling automation (Pitaya project — Java 17)"), List.of(
                                 Map.of("fr", "Conception d'un service d'ingestion de données via l'API REST Jira pour extraire les KPIs des tickets, les stocker en base et alimenter les tableaux de bord Power BI", "en", "Design of a data ingestion service via the Jira REST API to extract ticket KPIs, store them in a database, and power Power BI dashboards"),
-                                Map.of("fr", "Conception d’un service Java d’automatisation de génération de tickets Jira via les APIs REST de la suite Atlassian", "en", "Design of a Java service for automated Jira ticket generation via Atlassian REST APIs"),
+                                Map.of("fr", "Développement d’un service d’automatisation de génération de tickets Jira via les APIs REST de la suite Atlassian, conçu en Test Driven Development (TDD) pour garantir la robustesse du code.", "en", "Developed a Java automation service for generating Jira tickets via the Atlassian REST APIs, built using Test-Driven Development (TDD) to ensure code robustness."),
+                                Map.of("fr", "Collaboration et qualité logicielle : mise en œuvre de sessions régulières de Pair Programming (via CodeWithMe) pour accélérer la conception et partager les bonnes pratiques.", "en", "Collaboration & software quality: Implemented regular Pair Programming sessions (via CodeWithMe) to accelerate design and share best practices."),
                                 Map.of("fr", "Environnement de test sécurisé avec Mockoon (bouchonnage d’APIs REST) et Mockito (tests unitaires) pour valider les flux sans impacter l’instance Jira de production", "en", "Secure test environment with Mockoon (REST API stubbing) and Mockito (unit tests) to validate workflows without impacting the production Jira instance")
                         )),
                         new Responsibility(null, Map.of("fr", "Reporting & Suivi de performance (BI / KPIs)", "en", "Reporting & Performance Tracking (BI / KPIs)"), List.of(
@@ -354,7 +355,7 @@ public class DataInitializer {
                 Map.of("fr", "Développeur web", "en", "Web Developer"),
                 "Prodival",
                 Map.of("fr", "Bombardier, Arcelor Mittal, CFT", "en", "Bombardier, Arcelor Mittal, CFT"),
-                Map.of("fr", "Avril – Mai 2019", "en", "April – May 2019"),
+                Map.of("fr", "Avril 2019 – Mai 2019", "en", "April 2019 – May 2019"),
                 Map.of("fr", "2 mois", "en", "2 months"),
                 "Rosult",
                 Mission.ContractType.Stage,
