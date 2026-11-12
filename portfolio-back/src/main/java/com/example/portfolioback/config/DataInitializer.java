@@ -270,7 +270,7 @@ public class DataInitializer {
 
         Mission sncfGisement = new Mission(
                 "sncf-gisement",
-                Map.of("fr", "Développeur Full Stack Java/Angular", "en", "Java/Angular Full Stack developer"),
+                Map.of("fr", "Développeur Full Stack Java Spring / Angular", "en", "Java Spring / Angular Full Stack developer"),
                 "Sopra Steria",
                 Map.of("fr", "SNCF (Direction du Matériel / Réseau) — Gisement de Données", "en", "SNCF (Equipment / Network Directorate) — Data Repository"),
                 LocalDate.of(2022, 8, 1),
@@ -386,8 +386,8 @@ public class DataInitializer {
         ));
 
         resume.setIntro(Map.of(
-                "fr", "Développeur full stack Java / Spring Boot et Angular, spécialisé dans la conception et la maintenance d'applications web en environnements industriels et agiles (SAFe).",
-                "en", "Full-stack Java / Spring Boot and Angular developer focused on designing and maintaining web applications in industrial and agile (SAFe) environments."
+                "fr", "Développeur full stack Java / Spring et Angular, spécialisé dans la conception et la maintenance d'applications web en environnements industriels et agiles (SAFe).",
+                "en", "Full-stack Java / Spring and Angular developer focused on designing and maintaining web applications in industrial and agile (SAFe) environments."
         ));
 
         resume.setContact(new ResumeDto.ContactDto(
