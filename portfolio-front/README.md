@@ -2,12 +2,26 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.27.
 
+## Local backend and database
+
+The backend requires Java 25. From `portfolio-back`, start it with:
+
+```bash
+./mvnw spring-boot:run
+```
+
+By default, the backend listens on `http://localhost:8080` and uses an in-memory H2 database. The database is initialized on startup and its data is lost when the backend stops. The H2 console is at `http://localhost:8080/h2-console`, with JDBC URL `jdbc:h2:mem:portfoliodb`, username `sa`, and an empty password.
+
+Use the default Spring profile for this local setup. An active `prod` profile, `SPRING_DATASOURCE_*` environment variables, or settings in `portfolio-back/.env.local` can override the local database configuration; remove or adjust those overrides for local development.
+
+The Angular development server proxies `/api/**` to the backend at `http://localhost:8080`. Production continues to use its existing same-origin `/api` routing; the proxy only applies to the development server.
+
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+npm start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
