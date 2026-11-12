@@ -17,7 +17,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "allowedCommonJsDependencies": ["jspdf", "html2canvas", "canvg", "core-js", "raf", "rgbcolor", "fflate", "dompurify"],
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -64,7 +63,8 @@
               "buildTarget": "portfolio-front:build:production"
             },
             "development": {
-              "buildTarget": "portfolio-front:build:development"
+              "buildTarget": "portfolio-front:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

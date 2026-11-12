@@ -381,13 +381,13 @@ public class DataInitializer {
         resume.setName("Sofiane ZIANE");
 
         resume.setRole(Map.of(
-                "fr", "Développeur Full Stack Java / Angular",
-                "en", "Full Stack Java / Angular Developer"
+                "fr", "Développeur Full Stack Java Spring / Angular",
+                "en", "Full Stack Java Spring / Angular Developer"
         ));
 
         resume.setIntro(Map.of(
-                "fr", "Développeur Full Stack Java / Spring Boot et Angular avec 3 ans d'expérience en environnements industriels et agiles (SAFe). Habitué aux pipelines CI/CD et à la maintenance critique, je conçois des applications robustes et scalables.",
-                "en", "Full Stack Java / Spring Boot and Angular Developer with 3 years of experience in industrial and agile environments (SAFe). Experienced in CI/CD pipelines and critical maintenance, I design robust and scalable applications."
+                "fr", "Développeur full stack Java / Spring Boot et Angular, spécialisé dans la conception et la maintenance d'applications web en environnements industriels et agiles (SAFe).",
+                "en", "Full-stack Java / Spring Boot and Angular developer focused on designing and maintaining web applications in industrial and agile (SAFe) environments."
         ));
 
         resume.setContact(new ResumeDto.ContactDto(
@@ -401,27 +401,27 @@ public class DataInitializer {
 
         resume.setSkills(List.of(
                 new ResumeDto.SkillSectionDto(
-                        Map.of("fr", "Langages & frameworks", "en", "Languages & frameworks"),
-                        "Java, Spring Boot,<br />Angular, TypeScript, PL/SQL,<br />HTML/CSS, JavaScript, Flutter"
+                        Map.of("fr", "Back-end", "en", "Back end"),
+                        "Java, Spring Boot"
                 ),
                 new ResumeDto.SkillSectionDto(
-                        Map.of("fr", "Outils DevOps & CI/CD", "en", "DevOps & CI/CD tools"),
-                        "GitLab CI, Jenkins, SonarQube,<br />Jira, Apache Tomcat, Azure"
+                        Map.of("fr", "Front-end", "en", "Front end"),
+                        "Angular, TypeScript, JavaScript, HTML, CSS"
+                ),
+                new ResumeDto.SkillSectionDto(
+                        Map.of("fr", "Bases de données", "en", "Databases"),
+                        "PostgreSQL, PL/SQL"
+                ),
+                new ResumeDto.SkillSectionDto(
+                        Map.of("fr", "CI/CD & outils", "en", "CI/CD & tools"),
+                        "GitLab CI, Jenkins, SonarQube, Jira, Apache Tomcat, Azure"
                 )
         ));
 
         resume.setInterests(List.of(
                 new ResumeDto.InterestDto(
                         Map.of("fr", "Langues", "en", "Languages"),
-                        Map.of("fr", "Français (Langue maternelle)<br/>Anglais B2", "en", "French (native language)<br/>English B2")
-                ),
-                new ResumeDto.InterestDto(
-                        Map.of("fr", "Soft skills", "en", "Soft skills"),
-                        Map.of("fr", "Esprit d'analyse, Autonomie,<br/>", "en", "Analytical mind, Autonomy<br/>")
-                ),
-                new ResumeDto.InterestDto(
-                        Map.of("fr", "Centres d’intérêt", "en", "Interests"),
-                        Map.of("fr", "Sport : Course à pied, VTT, natation<br/>Lecture", "en", "Sport : running, natation, cycling<br />reading")
+                        Map.of("fr", "Français (langue maternelle), anglais (B2)", "en", "French (native), English (B2)")
                 )
         ));
 
@@ -442,16 +442,16 @@ public class DataInitializer {
 
         resume.setExperiences(List.of(
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Ingénieur études et développement Java", "en", "Java study and development engineer"),
+                        Map.of("fr", "Ingénieur d'études et développement Java", "en", "Java Software Engineer"),
                         "Sopra Steria",
                         "Lille",
                         Map.of("fr", "CGI Finance — TMA Banque & Assurance", "en", "CGI Finance — AMS Banking & Insurance"),
                         Map.of("fr", "Février 2024 – Février 2025", "en", "February 2024 – February 2025"),
                         null,
                         List.of(
-                                Map.of("fr", "Analyse des tickets Jira, études de faisabilité technique et chiffrage des évolutions", "en", "Jira ticket analysis, technical feasibility studies, and estimation of developments"),
-                                Map.of("fr", "Maintenance corrective et évolutive sur la stack Java / PL/SQL et édition documentaire (KSL Studio)", "en", "Corrective and evolutionary maintenance on the Java / PL/SQL stack and document publishing (KSL Studio)"),
-                                Map.of("fr", "Mises en production nocturnes (astreintes) et support applicatif critique", "en", "Nightly releases (on-call) and critical application support")
+                                Map.of("fr", "Analyse et chiffrage des évolutions (via Jira) : études de faisabilité technique et conception des solutions pour la TMA", "en", "Analyzed and estimated enhancements using Jira, assessed technical feasibility, and designed solutions for application maintenance"),
+                                Map.of("fr", "Maintenance corrective et évolutive d'applications critiques (stack Java / PL/SQL et KSL Studio) : garantie de la stabilité en production et gestion des évolutions techniques", "en", "Maintained and enhanced critical Java / PL/SQL and KSL Studio applications, ensuring production stability and managing technical changes"),
+                                Map.of("fr", "Mises en production nocturnes et support applicatif critique dans le cadre d'astreintes", "en", "Supported overnight production releases and critical application support on call")
                         ),
                         List.of("Java", "PL/SQL", "KSL Studio", "Shell", "Azure", "Jira")
                 ),
@@ -461,26 +461,26 @@ public class DataInitializer {
                         "Saint-Denis (Distance / Lille)",
                         Map.of("fr", "SNCF Réseau — Gisement de données", "en", "SNCF Réseau — Data Repository"),
                         Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
-                        Map.of("fr", "Refonte complète d'un gisement de données centralisé (source unique de vérité) pour les incidents et défaillances de la SNCF.", "en", "Complete redesign of a centralized data repository (single source of truth) for all SNCF incidents and failures."),
+                        Map.of("fr", "Refonte complète d'un référentiel centralisé de données sur les incidents et défaillances de SNCF Réseau.", "en", "Redesigned a centralized data repository for SNCF Réseau incidents and failures."),
                         List.of(
-                                Map.of("fr", "Développement full stack : Spring Boot / Angular 15", "en", "Full stack development: Spring Boot / Angular 15"),
-                                Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation de modifications (parent/enfant)", "en", "Design of a temporal dependency engine and modifications validation rules (parent/child)"),
-                                Map.of("fr", "Rédaction des spécifications techniques détaillées (STD), plans de tests et revues de code (GitLab MR)", "en", "Drafting detailed technical specifications (DTS), test plans, and code reviews (GitLab MR)")
+                                Map.of("fr", "Développement full stack (Spring Boot / Angular 15) du gisement de données centralisé : création de nouvelles fonctionnalités et interfaces utilisateur", "en", "Developed the centralized data repository with Spring Boot and Angular 15, creating new features and user interfaces"),
+                                Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation des modifications parent-enfant", "en", "Designed a temporal dependency engine and parent-child change validation rules"),
+                                Map.of("fr", "Rédaction des spécifications techniques et plans de tests, et revues de code via GitLab", "en", "Wrote technical specifications and test plans, and conducted code reviews through GitLab")
                         ),
                         List.of("Java 17", "Spring Boot", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
                 ),
                 new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Ingénieur études et développement (stage)", "en", "Study and development engineer (internship)"),
+                        Map.of("fr", "Ingénieur d'études et développement (stage)", "en", "Software Engineer (internship)"),
                         "Sopra Steria",
                         "Lille / Saint-Denis",
                         Map.of("fr", "SNCF Réseau — Centre de Services", "en", "SNCF Réseau — Service Center"),
                         Map.of("fr", "Mars 2022 – Juillet 2022", "en", "March 2022 – July 2022"),
-                        Map.of("fr", "Automatisation de processus internes et modernisation de l'écosystème logiciel.", "en", "Automation of internal processes and modernization of the software ecosystem."),
+                        Map.of("fr", "Automatisation de processus internes et modernisation de l'écosystème logiciel.", "en", "Automated internal processes and modernized the software ecosystem."),
                         List.of(
-                                Map.of("fr", "Migration des dépôts d'artefacts (Nexus vers Artifactory) et mise à jour des pipelines Jenkins", "en", "Migration of artifact repositories (Nexus to Artifactory) and update of Jenkins pipelines"),
-                                Map.of("fr", "Refactoring et migration de code legacy (Java 7 vers Java 8, API Streams & Lambdas)", "en", "Refactoring and migration of legacy code (Java 7 to Java 8, Streams & Lambdas API)"),
-                                Map.of("fr", "Extraction des KPIs via l'API REST Jira, stockage en base et alimentation des rapports Power BI", "en", "Extraction of KPIs via the Jira REST API, database storage, and Power BI report feeding"),
-                                Map.of("fr", "Modélisation de tableaux de bord décisionnels et KPIs (Power BI / Power Query)", "en", "Modeling of decision-making dashboards and KPIs (Power BI / Power Query)")
+                                Map.of("fr", "Migration de dépôts d'artefacts (Nexus vers Artifactory) et mise à jour des pipelines Jenkins (pratiques DevOps)", "en", "Migrated artifact repositories from Nexus to Artifactory and updated Jenkins pipelines using DevOps practices"),
+                                Map.of("fr", "Modernisation de code legacy : migration de Java 7 vers Java 8 (Streams & Lambdas API) pour améliorer la maintenabilité", "en", "Modernized legacy code by migrating from Java 7 to Java 8 (Streams and Lambdas API) to improve maintainability"),
+                                Map.of("fr", "Flux de données end-to-end : extraction de KPIs via l'API REST Jira (développé en Java / Spring Boot), stockage en base de données et alimentation des rapports Power BI", "en", "Built an end-to-end data flow in Java / Spring Boot: extracted KPIs via the Jira REST API, stored them in a database, and fed Power BI reports"),
+                                Map.of("fr", "Conception de tableaux de bord et d'indicateurs avec Power BI et Power Query", "en", "Built dashboards and KPIs with Power BI and Power Query")
                         ),
                         List.of("Java 17", "REST API", "Artifactory", "Nexus", "Jenkins", "Git", "Mockito", "Power BI")
                 ),
@@ -492,7 +492,7 @@ public class DataInitializer {
                         Map.of("fr", "Avril 2019 – Mai 2019", "en", "April 2019 – May 2019"),
                         Map.of("fr", "Refonte de l'aide en ligne d'un logiciel de management de la qualité.", "en", "Redesign of the online help system for a quality management software."),
                         List.of(
-                                Map.of("fr", "Développement front et back des pages d'assistance utilisateur", "en", "Front-end and back-end development of user assistance pages")
+                                Map.of("fr", "Développement front-end et back-end de pages d'aide en ligne", "en", "Developed front-end and back-end pages for the online help system")
                         ),
                         List.of("HTML", "CSS", "jQuery", "C# (.NET)")
                 )

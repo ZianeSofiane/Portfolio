@@ -197,6 +197,37 @@ app-root {
   }
 }
 
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  app-navbar,
+  app-footer,
+  app-home > app-hero,
+  app-home > app-missions,
+  app-home > app-project-list,
+  app-home > app-skill-list {
+    display: none !important;
+  }
+
+  app-home,
+  app-resume {
+    display: block !important;
+  }
+
+  #resume {
+    padding: 14mm 16mm !important;
+  }
+}
+
 @media (max-width: 640px) {
   html {
     font-size: 15px;

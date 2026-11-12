@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 import { ResumeService } from '../../services/resume.service';
 import { LocalizedResume } from '../../models/resume.model';
@@ -44,46 +44,7 @@ export class Resume {
     })),
   );
 
-  readonly generating = signal(false);
-
-  private readonly paper = viewChild.required<ElementRef<HTMLElement>>('paper');
-
-  async downloadPdf(): Promise<void> {
-    if (this.generating()) {
-      return;
-    }
-    this.generating.set(true);
-    try {
-      const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
-        import('html2canvas-pro'),
-        import('jspdf'),
-      ]);
-
-      const paper = this.paper().nativeElement;
-      paper.classList.add('pdf-export');
-      try {
-        const canvas = await html2canvas(paper, {
-          scale: 2,
-          backgroundColor: '#fff',
-          windowWidth: 1200,
-        });
-
-        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const imgHeight = (canvas.height * pageWidth) / canvas.width;
-        const image = canvas.toDataURL('image/jpeg', 0.95);
-
-        const ratio = Math.min(1, pageHeight / imgHeight);
-        const drawWidth = pageWidth * ratio;
-        pdf.addImage(image, 'JPEG', (pageWidth - drawWidth) / 2, 0, drawWidth, imgHeight * ratio);
-
-        pdf.save('Cv_ZIANE_Sofiane.pdf');
-      } finally {
-        paper.classList.remove('pdf-export');
-      }
-    } finally {
-      this.generating.set(false);
-    }
+  printResume(): void {
+    window.print();
   }
 }
