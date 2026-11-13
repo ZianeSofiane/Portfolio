@@ -3,6 +3,12 @@
     <h1 class="section-title">{{ i18n.translate('missions.title') }}</h1>
     <p class="section-subtitle">{{ i18n.translate('missions.description') }}</p>
     <span class="badge-accent mt-4 inline-block">SAFe Practitioner</span>
+    <div>
+      <button type="button" class="btn-outline mt-4 px-4 py-2 rounded-lg text-sm"
+              (click)="copyAll()">
+        {{ copiedId() === 'all' ? i18n.translate('missions.copied') : i18n.translate('missions.copyAll') }}
+      </button>
+    </div>
   </div>
 
   <div class="missions-filters mb-10 space-y-4">
@@ -23,67 +29,133 @@
     </div>
   </div>
 
-  <ol class="missions-timeline relative border-l-2 border-card-border ml-3">
-    @for (m of visible(); track m.id) {
-      <li class="relative pl-8 pb-10">
-        <span class="mission-marker absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
-              [class]="expanded().has(m.id) ? 'bg-accent' : 'bg-muted'"></span>
+  @if (visible().length > 0 || visibleProjects().length > 0) {
+    <ol class="missions-timeline relative border-l-2 border-card-border ml-3">
+      @for (m of visible(); track m.id) {
+        <li class="relative pl-8 pb-10">
+          <span class="mission-marker absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
+                [class]="expanded().has(m.id) ? 'bg-accent' : 'bg-muted'"></span>
 
-        <div class="card card-hover mission-card">
-          <div class="mission-card-header flex items-start gap-3">
-            <button type="button" class="mission-card-title flex-1 text-left"
-                    [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
-              <p class="text-sm font-semibold text-accent">{{ m.startDate | missionPeriod: m.endDate : i18n.language() }} · {{ m.duration }}</p>
-              <h2 class="text-xl font-semibold text-content mt-1">{{ m.company }} — {{ m.role }}</h2>
-              <p class="text-sm text-muted mt-1">
-                {{ m.clientOrSector }} · {{ m.location }} · {{ m.contractType }}
-              </p>
-            </button>
-            <button type="button" class="btn-outline px-3 py-1 rounded-lg text-xs shrink-0"
-                    (click)="copy(m)">
-              {{ copiedId() === m.id ? i18n.translate('missions.copied') : i18n.translate('missions.copy') }}
-            </button>
-            <button type="button" class="text-muted px-1" aria-label="Déplier"
-                    [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
-              {{ expanded().has(m.id) ? '▼' : '▶' }}
-            </button>
-          </div>
-
-          @if (expanded().has(m.id)) {
-            <div class="mt-6 pt-6 border-t border-card-border space-y-6">
-              <div>
-                <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.context') }}</h2>
-                <p class="text-muted text-sm leading-relaxed">{{ m.context }}</p>
-                @if (m.methodology || m.teamSize) {
-                  <p class="text-subtle text-sm mt-2">
-                    {{ m.methodology }}@if (m.teamSize) { · {{ i18n.translate('missions.team') }} : {{ m.teamSize }} }
-                  </p>
-                }
-              </div>
-
-              <div>
-                <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.resp') }}</h2>
-                @for (r of m.responsibilities; track r.category) {
-                  <p class="text-sm font-semibold text-content mt-3">{{ r.category }}</p>
-                  <ul class="list-disc pl-5 text-sm text-muted space-y-1">
-                    @for (t of r.tasks; track t) {
-                      <li>{{ t }}</li>
-                    }
-                  </ul>
-                }
-              </div>
-
-              <div class="flex flex-wrap gap-2">
-                @for (t of m.techStack; track t) {
-                  <span class="badge">{{ t }}</span>
-                }
-              </div>
+          <div class="card card-hover mission-card">
+            <div class="mission-card-header flex items-start gap-3">
+              <button type="button" class="mission-card-title flex-1 text-left"
+                      [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
+                <p class="text-sm font-semibold text-accent">{{ m.startDate | missionPeriod: m.endDate : i18n.language() }} · {{ m.duration }}</p>
+                <h2 class="text-xl font-semibold text-content mt-1">{{ m.company }} — {{ m.role }}</h2>
+                <p class="text-sm text-muted mt-1">
+                  {{ m.clientOrSector }} · {{ m.location }} · {{ m.contractType }}
+                </p>
+              </button>
+              <button type="button" class="btn-outline px-3 py-1 rounded-lg text-xs shrink-0"
+                      (click)="copy(m)">
+                {{ copiedId() === m.id ? i18n.translate('missions.copied') : i18n.translate('missions.copy') }}
+              </button>
+              <button type="button" class="text-muted px-1" aria-label="Déplier"
+                      [attr.aria-expanded]="expanded().has(m.id)" (click)="toggle(m.id)">
+                {{ expanded().has(m.id) ? '▼' : '▶' }}
+              </button>
             </div>
-          }
-        </div>
-      </li>
-    } @empty {
-      <li class="pl-8 text-muted"></li>
-    }
-  </ol>
+
+            @if (expanded().has(m.id)) {
+              <div class="mt-6 pt-6 border-t border-card-border space-y-6">
+                <div>
+                  <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.context') }}</h2>
+                  <p class="text-muted text-sm leading-relaxed">{{ m.context }}</p>
+                  @if (m.methodology || m.teamSize) {
+                    <p class="text-subtle text-sm mt-2">
+                      {{ m.methodology }}@if (m.teamSize) { · {{ i18n.translate('missions.team') }} : {{ m.teamSize }} }
+                    </p>
+                  }
+                </div>
+
+                <div>
+                  <h2 class="field-label text-lg text-accent font-bold">{{ i18n.translate('missions.resp') }}</h2>
+                  @for (r of m.responsibilities; track r.category) {
+                    <p class="text-sm font-semibold text-content mt-3">{{ r.category }}</p>
+                    <ul class="list-disc pl-5 text-sm text-muted space-y-1">
+                      @for (t of r.tasks; track t) {
+                        <li>{{ t }}</li>
+                      }
+                    </ul>
+                  }
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  @for (t of m.techStack; track t) {
+                    <span class="badge">{{ t }}</span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </li>
+      }
+
+      @if (visibleProjects().length > 0) {
+        <li class="relative pl-8 pb-10">
+          <span class="mission-marker absolute -left-2.25 top-6 h-4 w-4 rounded-full border-2 border-page"
+                [class]="expanded().has('personal-projects') ? 'bg-accent' : 'bg-muted'"></span>
+
+          <div class="card card-hover mission-card">
+            <div class="mission-card-header flex items-start gap-3">
+              <button type="button" class="mission-card-title flex-1 text-left"
+                      [attr.aria-expanded]="expanded().has('personal-projects')"
+                      (click)="toggle('personal-projects')">
+                <p class="text-sm font-semibold text-accent">{{ i18n.translate('missions.personalProjects') }}</p>
+                <h2 class="text-xl font-semibold text-content mt-1">
+                  {{ visibleProjects().length }} {{ i18n.translate('missions.projectsCount') }}
+                </h2>
+                <p class="text-sm text-muted mt-1">
+                  {{ i18n.translate('missions.expandProjects') }}
+                </p>
+              </button>
+              <button type="button" class="btn-outline px-3 py-1 rounded-lg text-xs shrink-0"
+                      (click)="copyProjects(visibleProjects())">
+                {{ copiedId() === 'personal-projects' ? i18n.translate('missions.copied') : i18n.translate('missions.copy') }}
+              </button>
+              <button type="button" class="text-muted px-1" aria-label="Déplier"
+                      [attr.aria-expanded]="expanded().has('personal-projects')"
+                      (click)="toggle('personal-projects')">
+                {{ expanded().has('personal-projects') ? '▼' : '▶' }}
+              </button>
+            </div>
+
+            @if (expanded().has('personal-projects')) {
+              <div class="mt-6 pt-6 border-t border-card-border space-y-6">
+                @for (project of visibleProjects(); track project.id) {
+                  <section class="border-b border-card-border pb-6 last:border-b-0 last:pb-0">
+                    <h3 class="text-lg font-semibold text-content">{{ project.title }}</h3>
+                    <p class="text-muted text-sm mt-2 leading-relaxed">{{ project.description }}</p>
+
+                    <div class="flex flex-wrap gap-2 mt-4">
+                      @for (projectSkill of project.projectSkills; track projectSkill.id) {
+                        <span class="badge">
+                          {{ projectSkill.skill.name }}@if (projectSkill.version) { ({{ projectSkill.version }}) }
+                        </span>
+                      }
+                    </div>
+
+                    <div class="flex gap-4 mt-4">
+                      @if (project.githubUrl) {
+                        <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" class="link-accent text-sm font-medium">
+                          {{ project.githubUrl }}
+                        </a>
+                      }
+                      @if (project.demoUrl) {
+                        <a [href]="project.demoUrl" target="_blank" rel="noopener noreferrer" class="link-subtle text-sm font-medium">
+                          {{ project.demoUrl }}
+                        </a>
+                      }
+                    </div>
+                  </section>
+                  }
+              </div>
+            }
+          </div>
+        </li>
+      }
+    </ol>
+  } @else {
+    <p class="pl-8 text-muted"></p>
+  }
 </section>

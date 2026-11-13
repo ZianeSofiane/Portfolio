@@ -3,6 +3,7 @@ import { signal } from '@angular/core';
 import { Resume } from './resume';
 import { Resume as ResumeData } from '../../models/resume.model';
 import { ResumeService } from '../../services/resume.service';
+import { ProjectService } from '../../services/project.service.';
 
 const resumeData: ResumeData = {
   name: 'Sofiane ZIANE',
@@ -39,6 +40,9 @@ describe('Resume', () => {
       providers: [{
         provide: ResumeService,
         useValue: { resume: signal([resumeData]) },
+      }, {
+        provide: ProjectService,
+        useValue: { projects: signal([]) },
       }],
     }).compileComponents();
 
@@ -70,6 +74,32 @@ describe('Resume', () => {
       .toContain('zianesofiane-portfolio.duckdns.org');
     expect(element.querySelector('.experience-role')?.textContent)
       .toContain('Sopra Steria, Lille — Développeur Full Stack (2024 – 2025)');
+  });
+
+  it('should render a personal projects section when the portfolio project is loaded', () => {
+    const projectService = TestBed.inject(ProjectService);
+    projectService.projects.set([{
+      id: 1,
+      title: { fr: 'Mon Portfolio Full-Stack', en: 'My Full-Stack Portfolio' },
+      description: { fr: 'Portfolio Angular et Spring', en: 'Angular and Spring portfolio' },
+      githubUrl: 'https://github.com/ZianeSofiane/Portfolio',
+      demoUrl: 'https://zianesofiane-portfolio.duckdns.org/',
+      featured: true,
+      projectSkills: [{
+        id: 1,
+        skill: { id: 1, name: 'Java', category: 'Backend' },
+        version: '25',
+      }],
+    }]);
+    fixture.detectChanges();
+
+    const section = fixture.nativeElement.querySelector('section[aria-labelledby="resume-projects"]');
+    expect(section?.textContent).toContain('Projets personnels');
+    const links = section?.querySelector('.resume-project-links');
+    expect(links?.querySelector('a[href="https://github.com/ZianeSofiane/Portfolio"]')?.textContent)
+      .toContain('GitHub: https://github.com/ZianeSofiane/Portfolio');
+    expect(links?.querySelector('a[href="https://zianesofiane-portfolio.duckdns.org/"]')?.textContent)
+      .toContain('Portfolio: zianesofiane-portfolio.duckdns.org');
   });
 
   it('should open the browser print dialog for a text-based PDF', () => {

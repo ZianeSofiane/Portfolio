@@ -46,6 +46,7 @@ public class DataInitializer {
         Skill docker = createOrUpdateSkill(skillRepository, "Docker", "DevOps");
         createOrUpdateSkill(skillRepository, "Git", "DevOps");
         createOrUpdateSkill(skillRepository, "Github", "DevOps");
+        Skill githubCopilot = createOrUpdateSkill(skillRepository, "GitHub Copilot", "DevOps");
         createOrUpdateSkill(skillRepository, "Typescript", "Frontend");
         Skill flutter = createOrUpdateSkill(skillRepository, "Flutter", "Frontend");
         Skill html = createOrUpdateSkill(skillRepository, "Html", null);
@@ -62,6 +63,7 @@ public class DataInitializer {
         portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
         portfolio.setFeatured(true);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
+        portfolio.setDemoUrl("https://zianesofiane-portfolio.duckdns.org/");
         portfolio.setImageUrl("portfolio.png");
         portfolio = projectRepository.save(portfolio);
 
@@ -70,7 +72,8 @@ public class DataInitializer {
         ProjectSkill pfAngular = createOrUpdateProjectSkill(projectSkillRepository, portfolio, angular, "21");
         ProjectSkill pfTailwind = createOrUpdateProjectSkill(projectSkillRepository, portfolio, tailwind, "4.3");
         ProjectSkill pfDocker = createOrUpdateProjectSkill(projectSkillRepository, portfolio, docker, "29.1.3");
-        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker);
+        ProjectSkill pfCopilot = createOrUpdateProjectSkill(projectSkillRepository, portfolio, githubCopilot, null);
+        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker, pfCopilot);
         projectRepository.save(portfolio);
 
         // --- GEOQUIZZ ---
@@ -483,18 +486,6 @@ public class DataInitializer {
                                 Map.of("fr", "Conception de tableaux de bord et d'indicateurs avec Power BI et Power Query", "en", "Built dashboards and KPIs with Power BI and Power Query")
                         ),
                         List.of("Java 17", "REST API", "Artifactory", "Nexus", "Jenkins", "Git", "Mockito", "Power BI")
-                ),
-                new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Développeur web (stage)", "en", "Web developer (internship)"),
-                        "Prodival",
-                        "Rosult",
-                        Map.of("fr", "Projets clients : Bombardier, ArcelorMittal, CFT", "en", "Client projects: Bombardier, ArcelorMittal, CFT"),
-                        Map.of("fr", "Avril 2019 – Mai 2019", "en", "April 2019 – May 2019"),
-                        Map.of("fr", "Refonte de l'aide en ligne d'un logiciel de management de la qualité.", "en", "Redesign of the online help system for a quality management software."),
-                        List.of(
-                                Map.of("fr", "Développement front-end et back-end de pages d'aide en ligne", "en", "Developed front-end and back-end pages for the online help system")
-                        ),
-                        List.of("HTML", "CSS", "jQuery", "C# (.NET)")
                 )
         ));
 

@@ -2,6 +2,8 @@ import { Component, computed, inject } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 import { ResumeService } from '../../services/resume.service';
 import { LocalizedResume } from '../../models/resume.model';
+import { LocalizedProject } from '../../models/project.model';
+import { ProjectService } from '../../services/project.service.';
 
 @Component({
   selector: 'app-resume',
@@ -11,7 +13,25 @@ import { LocalizedResume } from '../../models/resume.model';
 })
 export class Resume {
   protected readonly resumeService = inject(ResumeService);
+  private readonly projectService = inject(ProjectService);
   protected readonly i18n = inject(TranslationService);
+
+  portfolioProject = computed<LocalizedProject | undefined>(() => {
+    const project = this.projectService.projects().find(
+      (candidate) => candidate.githubUrl === 'https://github.com/ZianeSofiane/Portfolio',
+    );
+    return project
+      ? {
+          ...project,
+          title: this.i18n.localize(project.title),
+          description: this.i18n.localize(project.description),
+        }
+      : undefined;
+  });
+
+  displayUrl(url: string): string {
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  }
 
   resume = computed<LocalizedResume[]>(() =>
     this.resumeService.resume().map((r) => ({

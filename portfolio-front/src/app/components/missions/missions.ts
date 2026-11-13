@@ -4,6 +4,8 @@ import { MissionService } from '../../services/mission.service';
 import { formatMissionPeriod, MissionPeriodPipe } from '../../pipes/mission-period.pipe';
 import { SkillService } from '../../services/skill.service';
 import { TranslationService } from '../../services/translation.service';
+import { LocalizedProject } from '../../models/project.model';
+import { ProjectService } from '../../services/project.service.';
 
 interface MissionFilter {
   key: string;
@@ -24,6 +26,30 @@ export class Missions {
   private missionService = inject(MissionService);
   protected readonly i18n = inject(TranslationService);
   protected skillService = inject(SkillService);
+  private readonly projectService = inject(ProjectService);
+
+  projects = computed<LocalizedProject[]>(() =>
+    this.projectService.projects().map((project) => ({
+      ...project,
+      title: this.i18n.localize(project.title),
+      description: this.i18n.localize(project.description),
+    })),
+  );
+
+  readonly visibleProjects = computed(() => {
+    const filter = this.filters().find((f) => f.key === this.activeFilter()) ?? this.filters()[0];
+    const q = this.query().trim().toLowerCase();
+    return this.projects().filter((project) => {
+      const matchesFilter = filter.key === 'all' || project.projectSkills.some(
+        (projectSkill) => projectSkill.skill.name.toLowerCase().includes(filter.key),
+      );
+      return matchesFilter && (!q || JSON.stringify(project).toLowerCase().includes(q));
+    });
+  });
+
+  projectTechnologies(project: LocalizedProject): string {
+    return project.projectSkills.map(({ skill }) => skill.name).join(' · ');
+  }
 
   missions = computed<LocalizedMission[]>(() =>
     [...this.missionService.missions()]
@@ -79,6 +105,24 @@ export class Missions {
   }
 
   async copy(m: LocalizedMission): Promise<void> {
+    if (await this.writeToClipboard(this.missionText(m))) {
+      this.copiedId.set(m.id);
+      setTimeout(() => this.copiedId.set(null), 1500);
+    }
+  }
+
+  async copyAll(): Promise<void> {
+    const text = [
+      ...this.missions().map((mission) => this.missionText(mission)),
+      ...this.projects().map((project) => this.projectText(project)),
+    ].join('\n\n---\n\n');
+    if (await this.writeToClipboard(text)) {
+      this.copiedId.set('all');
+      setTimeout(() => this.copiedId.set(null), 1500);
+    }
+  }
+
+  private missionText(m: LocalizedMission): string {
     const header = [
       `${m.company} — ${m.role}`,
       [m.clientOrSector, m.location, m.contractType].filter(Boolean).join(' · '),
@@ -94,10 +138,28 @@ export class Missions {
       `Responsabilités\n${responsibilities.join('\n\n')}`,
       `Technologies : ${m.techStack.join(', ')}`,
     ].join('\n\n');
+    return text;
+  }
+
+  async copyProjects(projects: LocalizedProject[]): Promise<void> {
+    const text = projects.map((project) => this.projectText(project)).join('\n\n');
     if (await this.writeToClipboard(text)) {
-      this.copiedId.set(m.id);
+      this.copiedId.set('personal-projects');
       setTimeout(() => this.copiedId.set(null), 1500);
     }
+  }
+
+  private projectText(project: LocalizedProject): string {
+    const technologies = project.projectSkills
+      .map(({ skill, version }) => `${skill.name}${version ? ` ${version}` : ''}`)
+      .join(', ');
+    return [
+      `${this.i18n.translate('missions.personalProject')} — ${project.title}`,
+      project.description,
+      `Technologies : ${technologies}`,
+      project.githubUrl,
+      project.demoUrl,
+    ].filter(Boolean).join('\n');
   }
 
   // The Clipboard API needs a secure context; fall back to execCommand otherwise (e.g. phones over HTTP)
