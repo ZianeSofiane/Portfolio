@@ -16,6 +16,7 @@ const resumeData: ResumeData = {
     license: '',
     linkedin: 'https://www.linkedin.com/in/example',
     github: 'https://github.com/example',
+    portfolio: 'https://portfolio.example.com/',
   },
   skills: [{ category: { fr: 'Back-end', en: 'Back end' }, items: 'Java, Spring Boot' }],
   education: [{ title: { fr: 'Master informatique', en: 'Computer Science MSc' }, school: 'UPHF' }],
@@ -70,8 +71,8 @@ describe('Resume', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('.resume-intro')?.textContent).toContain('Profil de test');
     expect(element.querySelector('#resume-summary')).toBeNull();
-    expect(element.querySelector('a[href="https://zianesofiane-portfolio.duckdns.org/"]')?.textContent)
-      .toContain('zianesofiane-portfolio.duckdns.org');
+    expect(element.querySelector('a[href="https://portfolio.example.com/"]')?.textContent)
+      .toContain('Portfolio: portfolio.example.com');
     expect(element.querySelector('.experience-role')?.textContent)
       .toContain('Sopra Steria, Lille — Développeur Full Stack (2024 – 2025)');
   });
@@ -89,12 +90,18 @@ describe('Resume', () => {
         id: 1,
         skill: { id: 1, name: 'Java', category: 'Backend' },
         version: '25',
+      }, {
+        id: 2,
+        skill: { id: 2, name: 'Docker', category: 'DevOps' },
+        version: '',
       }],
     }]);
     fixture.detectChanges();
 
     const section = fixture.nativeElement.querySelector('section[aria-labelledby="resume-projects"]');
     expect(section?.textContent).toContain('Projets personnels');
+    expect(section?.querySelector('.experience-tech')?.textContent?.replace(/\s+/g, ' ').trim())
+      .toContain('Java 25, Docker');
     const links = section?.querySelector('.resume-project-links');
     expect(links?.querySelector('a[href="https://github.com/ZianeSofiane/Portfolio"]')?.textContent)
       .toContain('GitHub: https://github.com/ZianeSofiane/Portfolio');

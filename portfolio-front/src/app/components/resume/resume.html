@@ -8,7 +8,7 @@
           <li><a [href]="'mailto:' + r.contact.email">{{ r.contact.email }}</a></li>
           <li><a [href]="'tel:' + r.contact.phone">{{ r.contact.phone }}</a></li>
           <li>{{ r.contact.location }}</li>
-          <li><a href="https://zianesofiane-portfolio.duckdns.org/">Portfolio: zianesofiane-portfolio.duckdns.org</a></li>
+          <li><a [href]="r.contact.portfolio">Portfolio: {{ displayUrl(r.contact.portfolio) }}</a></li>
           <li><a [href]="r.contact.linkedin">LinkedIn: {{ r.contact.linkedin }}</a></li>
           <li><a [href]="r.contact.github">GitHub: {{ r.contact.github }}</a></li>
         </ul>
@@ -68,7 +68,7 @@
                 <strong>{{ i18n.translate('cv.techEnv') }}:</strong>
                 <span>
                   @for (projectSkill of project.projectSkills; track projectSkill.id) {
-                    {{ projectSkill.skill.name }}@if (projectSkill.version) { {{ projectSkill.version }} }@if (!$last) {, }
+                    {{ projectSkill.skill.name }}@if (projectSkill.version) { {{ projectSkill.version }}}@if (!$last) {, }
                   }
                 </span>
               </div>

@@ -13,6 +13,7 @@ public class TranslationService {
 
     public static final String PROJECT_PORTFOLIO_TITLE = "project.portfolio.title";
     public static final String PROJECT_PORTFOLIO_DESCRIPTION = "project.portfolio.description";
+    public static final String PROJECT_PORTFOLIO_SKILLS_DESCRIPTION = "project.portfolio.skillsDescription";
     public static final String PROJECT_ISN_TITLE = "project.isn.title";
     public static final String PROJECT_ISN_DESCRIPTION = "project.isn.description";
     public static final String PROJECT_JFX_TITLE = "project.jfx.title";
@@ -25,8 +26,25 @@ public class TranslationService {
                     EN, "My Full-Stack Portfolio",
                     FR, "Mon Portfolio Full-Stack"),
             PROJECT_PORTFOLIO_DESCRIPTION, Map.of(
-                    EN, "A modern, high-performance portfolio built with Angular, Spring Boot 3+ and Tailwind CSS v4",
-                    FR, "Un portfolio moderne et ultra-performant développé avec Angular, Spring Boot 3+ et Tailwind CSS v4"),
+                    EN, "A modern, high-performance portfolio built with Angular, Spring Boot 3+ and Tailwind CSS v4, containerized with Docker and hosted on Oracle Cloud Infrastructure (OCI)",
+                    FR, "Un portfolio moderne et ultra-performant développé avec Angular, Spring Boot 3+ et Tailwind CSS v4, conteneurisé avec Docker et hébergé sur Oracle Cloud Infrastructure (OCI)"),
+            PROJECT_PORTFOLIO_SKILLS_DESCRIPTION, Map.of(
+                    EN, """
+                            Context & objective: Design and development of a high-performance full-stack portfolio, containerized and independently hosted in the cloud.
+
+                            Architecture & tooling:
+                            - Development with IntelliJ IDEA Ultimate (Java 25 / Spring Boot 4+, Angular 21, Tailwind CSS).
+                            - Containerization of services with Docker.
+                            - Routing, traffic management and reverse proxy configured with Caddy on Oracle Cloud Infrastructure (OCI).
+                            - Dynamic domain name resolution managed through DuckDNS.""",
+                    FR, """
+                            Contexte & objectif : Conception et développement d'un portfolio full-stack haute performance, conteneurisé et hébergé en autonomie complète sur le cloud.
+
+                            Architecture & outillage :
+                            - Développement sous IntelliJ IDEA Ultimate (Java 25 / Spring Boot 4+, Angular 21, Tailwind CSS).
+                            - Conteneurisation des services via Docker.
+                            - Routage, gestion du trafic et reverse proxy configurés avec Caddy sur Oracle Cloud Infrastructure (OCI).
+                            - Résolution de nom de domaine dynamique gérée via DuckDNS."""),
             PROJECT_ISN_TITLE, Map.of(
                     EN, "GeoQuizz",
                     FR, "GeoQuizz"),

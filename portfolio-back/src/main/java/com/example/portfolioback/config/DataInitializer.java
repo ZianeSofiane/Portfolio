@@ -16,6 +16,8 @@ import java.util.Set;
 @Configuration
 public class DataInitializer {
 
+    private static final String PORTFOLIO_URL = "https://zianesofiane-portfolio.duckdns.org/";
+
     @Bean
     CommandLineRunner initData(ProjectRepository projectRepository, ProjectSkillRepository projectSkillRepository, SkillRepository skillRepository,
                                TranslationService translationService, MissionRepository missionRepository, ResumeRepository resumeRepository) {
@@ -44,6 +46,7 @@ public class DataInitializer {
         createOrUpdateSkill(skillRepository, "PowerQuery", "Data");
         createOrUpdateSkill(skillRepository, "PowerBI", "Data");
         Skill docker = createOrUpdateSkill(skillRepository, "Docker", "DevOps");
+        Skill oracleCloud = createOrUpdateSkill(skillRepository, "Oracle Cloud", "DevOps");
         createOrUpdateSkill(skillRepository, "Git", "DevOps");
         createOrUpdateSkill(skillRepository, "Github", "DevOps");
         Skill githubCopilot = createOrUpdateSkill(skillRepository, "GitHub Copilot", "DevOps");
@@ -61,9 +64,10 @@ public class DataInitializer {
                 .orElseGet(Project::new);
         portfolio.setTitle(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE));
         portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
+        portfolio.setSkillsPortfolioDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_SKILLS_DESCRIPTION));
         portfolio.setFeatured(true);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
-        portfolio.setDemoUrl("https://zianesofiane-portfolio.duckdns.org/");
+        portfolio.setDemoUrl(PORTFOLIO_URL);
         portfolio.setImageUrl("portfolio.png");
         portfolio = projectRepository.save(portfolio);
 
@@ -72,8 +76,9 @@ public class DataInitializer {
         ProjectSkill pfAngular = createOrUpdateProjectSkill(projectSkillRepository, portfolio, angular, "21");
         ProjectSkill pfTailwind = createOrUpdateProjectSkill(projectSkillRepository, portfolio, tailwind, "4.3");
         ProjectSkill pfDocker = createOrUpdateProjectSkill(projectSkillRepository, portfolio, docker, "29.1.3");
+        ProjectSkill pfOracleCloud = createOrUpdateProjectSkill(projectSkillRepository, portfolio, oracleCloud, null);
         ProjectSkill pfCopilot = createOrUpdateProjectSkill(projectSkillRepository, portfolio, githubCopilot, null);
-        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker, pfCopilot);
+        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker, pfOracleCloud, pfCopilot);
         projectRepository.save(portfolio);
 
         // --- GEOQUIZZ ---
@@ -399,7 +404,8 @@ public class DataInitializer {
                 "Valenciennes (59300)",
                 "Permis B",
                 "https://www.linkedin.com/in/sofiane-ziane-a52814225/",
-                "https://github.com/ZianeSofiane"
+                "https://github.com/ZianeSofiane",
+                PORTFOLIO_URL
         ));
 
         resume.setSkills(List.of(

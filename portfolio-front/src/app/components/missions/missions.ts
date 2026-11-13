@@ -7,6 +7,8 @@ import { TranslationService } from '../../services/translation.service';
 import { LocalizedProject } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service.';
 
+type SkillsPortfolioProject = LocalizedProject & { details?: string };
+
 interface MissionFilter {
   key: string;
   label: string;
@@ -28,11 +30,14 @@ export class Missions {
   protected skillService = inject(SkillService);
   private readonly projectService = inject(ProjectService);
 
-  projects = computed<LocalizedProject[]>(() =>
+  projects = computed<SkillsPortfolioProject[]>(() =>
     this.projectService.projects().map((project) => ({
       ...project,
       title: this.i18n.localize(project.title),
       description: this.i18n.localize(project.description),
+      details: project.skillsPortfolioDescription
+        ? this.i18n.localize(project.skillsPortfolioDescription)
+        : undefined,
     })),
   );
 
@@ -141,7 +146,7 @@ export class Missions {
     return text;
   }
 
-  async copyProjects(projects: LocalizedProject[]): Promise<void> {
+  async copyProjects(projects: SkillsPortfolioProject[]): Promise<void> {
     const text = projects.map((project) => this.projectText(project)).join('\n\n');
     if (await this.writeToClipboard(text)) {
       this.copiedId.set('personal-projects');
@@ -149,13 +154,13 @@ export class Missions {
     }
   }
 
-  private projectText(project: LocalizedProject): string {
+  private projectText(project: SkillsPortfolioProject): string {
     const technologies = project.projectSkills
       .map(({ skill, version }) => `${skill.name}${version ? ` ${version}` : ''}`)
       .join(', ');
     return [
       `${this.i18n.translate('missions.personalProject')} — ${project.title}`,
-      project.description,
+      project.details || project.description,
       `Technologies : ${technologies}`,
       project.githubUrl,
       project.demoUrl,

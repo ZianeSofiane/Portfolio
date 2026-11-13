@@ -65,6 +65,7 @@ public class ProjectController {
                 project.getId(),
                 project.getTitle(),
                 project.getDescription(),
+                project.getSkillsPortfolioDescription(),
                 project.getImageUrl(),
                 project.getGithubUrl(),
                 project.getDemoUrl(),

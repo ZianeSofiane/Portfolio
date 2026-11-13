@@ -33,6 +33,10 @@ public class Project {
     @Column(columnDefinition = "TEXT")
     private Map<String, String> description;
 
+    @Convert(converter = TranslationMapConverter.class)
+    @Column(columnDefinition = "TEXT")
+    private Map<String, String> skillsPortfolioDescription;
+
     private String imageUrl;
     private String githubUrl;
     private String demoUrl;
@@ -48,4 +52,3 @@ public class Project {
     @Builder.Default
     private Set<ProjectSkill> projectSkills = new HashSet<>();
 }
-
