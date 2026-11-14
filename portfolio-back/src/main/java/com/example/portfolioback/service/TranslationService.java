@@ -26,8 +26,8 @@ public class TranslationService {
                     EN, "My Full-Stack Portfolio",
                     FR, "Mon Portfolio Full-Stack"),
             PROJECT_PORTFOLIO_DESCRIPTION, Map.of(
-                    EN, "A modern, high-performance portfolio built with Angular, Spring Boot 3+ and Tailwind CSS v4, containerized with Docker and hosted on Oracle Cloud Infrastructure (OCI)",
-                    FR, "Un portfolio moderne et ultra-performant développé avec Angular, Spring Boot 3+ et Tailwind CSS v4, conteneurisé avec Docker et hébergé sur Oracle Cloud Infrastructure (OCI)"),
+                    EN, "A modern, high-performance portfolio built with Angular (21), Java (25), Spring Boot (4) and Tailwind CSS v4, with GitHub Copilot, containerized with Docker and hosted on Oracle Cloud Infrastructure (OCI)",
+                    FR, "Un portfolio moderne et ultra-performant développé avec Angular (21), Java (25), Spring Boot (4) et Tailwind CSS v4 avec GitHub Copilot, conteneurisé avec Docker et hébergé sur Oracle Cloud Infrastructure (OCI)"),
             PROJECT_PORTFOLIO_SKILLS_DESCRIPTION, Map.of(
                     EN, """
                             Context & objective: Design and development of a high-performance full-stack portfolio, containerized and independently hosted in the cloud.

@@ -415,7 +415,7 @@ public class DataInitializer {
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Front-end", "en", "Front end"),
-                        "Angular, TypeScript, JavaScript, HTML, CSS"
+                        "Angular, TypeScript, PrimeNg, Tailwind"
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Bases de données", "en", "Databases"),
@@ -423,7 +423,7 @@ public class DataInitializer {
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "CI/CD & outils", "en", "CI/CD & tools"),
-                        "GitLab CI, Jenkins, SonarQube, Jira, Apache Tomcat, Azure"
+                        "GitLab, Jira, Jenkins, SonarQube, Azure, Docker"
                 )
         ));
 
@@ -437,10 +437,6 @@ public class DataInitializer {
         resume.setEducation(List.of(
                 new ResumeDto.EducationDto(
                         Map.of("fr", "Master TNSI (Technologies Nouvelles et Systèmes d'Informations)", "en", "Master's Degree in New Technologies and Information Systems"),
-                        "INSA, UPHF"
-                ),
-                new ResumeDto.EducationDto(
-                        Map.of("fr", "Licence Informatique", "en", "Bachelor's Degree in Computer Science"),
                         "INSA, UPHF"
                 ),
                 new ResumeDto.EducationDto(
@@ -472,11 +468,11 @@ public class DataInitializer {
                         Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
                         Map.of("fr", "Refonte complète d'un référentiel centralisé de données sur les incidents et défaillances de SNCF Réseau.", "en", "Redesigned a centralized data repository for SNCF Réseau incidents and failures."),
                         List.of(
-                                Map.of("fr", "Développement full stack (Spring Boot / Angular 15) du gisement de données centralisé : création de nouvelles fonctionnalités et interfaces utilisateur", "en", "Developed the centralized data repository with Spring Boot and Angular 15, creating new features and user interfaces"),
+                                Map.of("fr", "Développement full stack (Spring Boot, Angular 15) d'un gisement de données centralisé : conception des API REST, développement des interfaces utilisateur et mise en place de nouvelles fonctionnalités métiers.", "en", "Full-stack development (Spring Boot, Angular 15) of a centralized data repository: REST API design, user interface development, and implementation of new business features."),
                                 Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation des modifications parent-enfant", "en", "Designed a temporal dependency engine and parent-child change validation rules"),
                                 Map.of("fr", "Rédaction des spécifications techniques et plans de tests, et revues de code via GitLab", "en", "Wrote technical specifications and test plans, and conducted code reviews through GitLab")
                         ),
-                        List.of("Java 17", "Spring Boot", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
+                        List.of("Java 17", "Spring Boot", "API REST", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
                 ),
                 new ResumeDto.ExperienceDto(
                         Map.of("fr", "Ingénieur d'études et développement (stage)", "en", "Software Engineer (internship)"),
@@ -487,9 +483,8 @@ public class DataInitializer {
                         Map.of("fr", "Automatisation de processus internes et modernisation de l'écosystème logiciel.", "en", "Automated internal processes and modernized the software ecosystem."),
                         List.of(
                                 Map.of("fr", "Migration de dépôts d'artefacts (Nexus vers Artifactory) et mise à jour des pipelines Jenkins (pratiques DevOps)", "en", "Migrated artifact repositories from Nexus to Artifactory and updated Jenkins pipelines using DevOps practices"),
-                                Map.of("fr", "Modernisation de code legacy : migration de Java 7 vers Java 8 (Streams & Lambdas API) pour améliorer la maintenabilité", "en", "Modernized legacy code by migrating from Java 7 to Java 8 (Streams and Lambdas API) to improve maintainability"),
-                                Map.of("fr", "Flux de données end-to-end : extraction de KPIs via l'API REST Jira (développé en Java / Spring Boot), stockage en base de données et alimentation des rapports Power BI", "en", "Built an end-to-end data flow in Java / Spring Boot: extracted KPIs via the Jira REST API, stored them in a database, and fed Power BI reports"),
-                                Map.of("fr", "Conception de tableaux de bord et d'indicateurs avec Power BI et Power Query", "en", "Built dashboards and KPIs with Power BI and Power Query")
+                                Map.of("fr", "Modernisation de code legacy : migration de Java 7 vers Java 8 (Streams & Lambdas API)", "en", "Modernized legacy code by migrating from Java 7 to Java 8 (Streams and Lambdas API)"),
+                                Map.of("fr", "Pipeline de données end-to-end : extraction des KPIs de tickets via l'API REST Jira (Java / Spring Boot), stockage en base et création des tableaux de bord sous Power BI (Power Query)", "en", "Built an end-to-end data pipeline: extracted ticket KPIs via the Jira REST API (Java / Spring Boot), stored them in a database, and created dashboards with Power BI (Power Query)")
                         ),
                         List.of("Java 17", "REST API", "Artifactory", "Nexus", "Jenkins", "Git", "Mockito", "Power BI")
                 )
