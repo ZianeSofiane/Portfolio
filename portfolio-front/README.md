@@ -14,6 +14,8 @@ By default, the backend listens on `http://localhost:8080` and uses an in-memory
 
 Use the default Spring profile for this local setup. An active `prod` profile, `SPRING_DATASOURCE_*` environment variables, or settings in `portfolio-back/.env.local` can override the local database configuration; remove or adjust those overrides for local development.
 
+Project listings are ordered by the `projects.position` database column (ascending), then by ID. Projects without a position appear last. The seeded projects' positions are set in `DataInitializer` on every backend startup; change them there to make a new order persistent across restarts. Hibernate adds the column to existing databases through the configured schema update.
+
 The Angular development server proxies `/api/**` to the backend at `http://localhost:8080`. Production continues to use its existing same-origin `/api` routing; the proxy only applies to the development server.
 
 ## Development server

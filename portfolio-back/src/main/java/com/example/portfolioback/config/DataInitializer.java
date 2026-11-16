@@ -66,6 +66,7 @@ public class DataInitializer {
         portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
         portfolio.setSkillsPortfolioDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_SKILLS_DESCRIPTION));
         portfolio.setFeatured(true);
+        portfolio.setPosition(1);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
         portfolio.setDemoUrl(PORTFOLIO_URL);
         portfolio.setImageUrl("portfolio.png");
@@ -87,6 +88,7 @@ public class DataInitializer {
         geoquizz.setTitle(translationService.get(TranslationService.PROJECT_ISN_TITLE));
         geoquizz.setDescription(translationService.get(TranslationService.PROJECT_ISN_DESCRIPTION));
         geoquizz.setFeatured(true);
+        geoquizz.setPosition(2);
         geoquizz.setGithubUrl("https://github.com/ZianeSofiane/ISN_Terminale");
         geoquizz.setImageUrl("geoquizz.png");
         geoquizz.setPreviewUrl("geoquizz.gif");
@@ -105,6 +107,7 @@ public class DataInitializer {
         javaFxProject.setTitle(translationService.get(TranslationService.PROJECT_JFX_TITLE));
         javaFxProject.setDescription(translationService.get(TranslationService.PROJECT_JFX_DESCRIPTION));
         javaFxProject.setFeatured(true);
+        javaFxProject.setPosition(3);
         javaFxProject.setGithubUrl("https://github.com/ZianeSofiane/MiniJeuxJavaFx");
         javaFxProject.setImageUrl("javaFx.png");
         javaFxProject.setPreviewUrl("javaFx.gif");
@@ -121,6 +124,7 @@ public class DataInitializer {
         flutterProject.setTitle(translationService.get(TranslationService.PROJECT_FT_TITLE));
         flutterProject.setDescription(translationService.get(TranslationService.PROJECT_FT_DESCRIPTION));
         flutterProject.setFeatured(true);
+        flutterProject.setPosition(4);
         flutterProject.setGithubUrl("https://github.com/ZianeSofiane/Flutter_App");
         flutterProject.setImageUrl("soap.png");
         flutterProject.setPreviewUrl("flutter.gif");

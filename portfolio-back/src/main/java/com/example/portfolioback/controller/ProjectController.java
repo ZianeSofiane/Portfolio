@@ -3,7 +3,6 @@ import com.example.portfolioback.dto.ProjectDto;
 import com.example.portfolioback.dto.ProjectSkillDto;
 import com.example.portfolioback.dto.SkillDto;
 import com.example.portfolioback.entity.Project;
-import com.example.portfolioback.repository.ProjectRepository;
 import com.example.portfolioback.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,21 +16,19 @@ import java.util.stream.Collectors;
 public class ProjectController {
 
     private final ProjectService projectService;
-    private final ProjectRepository projectRepository;
-
-    public ProjectController(ProjectService projectService, ProjectRepository projectRepository) {
+    public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
-        this.projectRepository = projectRepository;
     }
 
     @GetMapping
-    @Transactional(readOnly = true) // Sécurise le lazy loading si nécessaire
+    @Transactional(readOnly = true)
     public List<ProjectDto> getAllProjects() {
-        return projectRepository.findAll().stream().map(this::mapProjectToDto).collect(Collectors.toList());
+        return projectService.getAllProjects().stream().map(this::mapProjectToDto).collect(Collectors.toList());
     }
 
     // Récupérer uniquement les projets mis en avant : GET http://localhost:8080/api/projects/featured
     @GetMapping("/featured")
+    @Transactional(readOnly = true)
     public List<ProjectDto> getFeaturedProjects() {
         return projectService.getFeaturedProjects().stream().map(this::mapProjectToDto).collect(Collectors.toList());
     }

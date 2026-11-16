@@ -16,11 +16,11 @@ public class ProjectService {
     }
 
     public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+        return projectRepository.findAllInDisplayOrder();
     }
 
     public List<Project> getFeaturedProjects() {
-        return projectRepository.findByFeaturedTrue();
+        return projectRepository.findFeaturedInDisplayOrder();
     }
 
     public Optional<Project> getProjectById(Long id) {
