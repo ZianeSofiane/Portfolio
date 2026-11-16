@@ -8,7 +8,7 @@
           <li><a [href]="'mailto:' + r.contact.email">{{ r.contact.email }}</a></li>
           <li><a [href]="'tel:' + r.contact.phone">{{ r.contact.phone }}</a></li>
           <li>{{ r.contact.location }}</li>
-          <li><a href="https://zianesofiane-portfolio.duckdns.org/">Portfolio: zianesofiane-portfolio.duckdns.org</a></li>
+          <li><a [href]="r.contact.portfolio">Portfolio: {{ displayUrl(r.contact.portfolio) }}</a></li>
           <li><a [href]="r.contact.linkedin">LinkedIn: {{ r.contact.linkedin }}</a></li>
           <li><a [href]="r.contact.github">GitHub: {{ r.contact.github }}</a></li>
         </ul>
@@ -37,8 +37,16 @@
             <header class="experience-header">
               <h3 class="experience-role">{{ exp.company }}, {{ exp.location }} — {{ exp.role }}@if (exp.period) {<span class="experience-period"> ({{ exp.period }})</span>}</h3>
             </header>
-            @if (exp.clientOrSector) {
-              <p class="experience-client">{{ i18n.translate('cv.client') }}: {{ exp.clientOrSector }}</p>
+            @if (exp.clientOrSector || exp.techStack.length > 0) {
+              <p class="experience-client">
+                @if (exp.clientOrSector) {
+                  {{ i18n.translate('cv.client') }}: {{ exp.clientOrSector }}
+                }
+                @if (exp.clientOrSector && exp.techStack.length > 0) { | }
+                @if (exp.techStack.length > 0) {
+                  {{ exp.techStack.join(', ') }}
+                }
+              </p>
             }
             @if (exp.description) {
               <p class="experience-description">{{ exp.description }}</p>
@@ -50,12 +58,31 @@
                 }
               </ul>
             }
-            @if (exp.techStack.length > 0) {
-              <p class="experience-tech"><strong>{{ i18n.translate('cv.techEnv') }}:</strong> {{ exp.techStack.join(', ') }}</p>
-            }
           </article>
         }
       </section>
+
+      @if (portfolioProject(); as project) {
+        <section class="resume-section" aria-labelledby="resume-projects">
+          <h2 id="resume-projects" class="section-title">{{ i18n.translate('cv.projects') }}</h2>
+          <article class="experience">
+            <h3 class="experience-role">{{ project.title }}</h3>
+            <p class="experience-description">{{ project.description }}</p>
+            <div class="resume-project-links">
+              @if (project.demoUrl) {
+                <a [href]="project.demoUrl" target="_blank" rel="noopener noreferrer">
+                  Portfolio: {{ displayUrl(project.demoUrl) }}
+                </a>
+              }
+              @if (project.githubUrl) {
+                <a [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                  GitHub: {{ project.githubUrl }}
+                </a>
+              }
+            </div>
+          </article>
+        </section>
+      }
 
       <section class="resume-section" aria-labelledby="resume-education">
         <h2 id="resume-education" class="section-title">{{ i18n.translate('cv.degree') }}</h2>

@@ -3,6 +3,7 @@ import { signal } from '@angular/core';
 import { Resume } from './resume';
 import { Resume as ResumeData } from '../../models/resume.model';
 import { ResumeService } from '../../services/resume.service';
+import { ProjectService } from '../../services/project.service.';
 
 const resumeData: ResumeData = {
   name: 'Sofiane ZIANE',
@@ -15,6 +16,7 @@ const resumeData: ResumeData = {
     license: '',
     linkedin: 'https://www.linkedin.com/in/example',
     github: 'https://github.com/example',
+    portfolio: 'https://portfolio.example.com/',
   },
   skills: [{ category: { fr: 'Back-end', en: 'Back end' }, items: 'Java, Spring Boot' }],
   education: [{ title: { fr: 'Master informatique', en: 'Computer Science MSc' }, school: 'UPHF' }],
@@ -23,9 +25,13 @@ const resumeData: ResumeData = {
     role: { fr: 'Développeur Full Stack', en: 'Full Stack Developer' },
     company: 'Sopra Steria',
     location: 'Lille',
+    clientOrSector: {
+      fr: 'CGI Finance — TMA Banque & Assurance',
+      en: 'CGI Finance — Banking & Insurance AMS',
+    },
     period: { fr: '2024 – 2025', en: '2024 – 2025' },
     tasks: [{ fr: 'Développement Java', en: 'Java development' }],
-    techStack: ['Java'],
+    techStack: ['Java', 'PL/SQL', 'KSL Studio', 'Shell', 'Azure', 'Jira'],
   }],
 };
 
@@ -39,6 +45,9 @@ describe('Resume', () => {
       providers: [{
         provide: ResumeService,
         useValue: { resume: signal([resumeData]) },
+      }, {
+        provide: ProjectService,
+        useValue: { projects: signal([]) },
       }],
     }).compileComponents();
 
@@ -66,10 +75,49 @@ describe('Resume', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('.resume-intro')?.textContent).toContain('Profil de test');
     expect(element.querySelector('#resume-summary')).toBeNull();
-    expect(element.querySelector('a[href="https://zianesofiane-portfolio.duckdns.org/"]')?.textContent)
-      .toContain('zianesofiane-portfolio.duckdns.org');
+    expect(element.querySelector('a[href="https://portfolio.example.com/"]')?.textContent)
+      .toContain('Portfolio: portfolio.example.com');
     expect(element.querySelector('.experience-role')?.textContent)
       .toContain('Sopra Steria, Lille — Développeur Full Stack (2024 – 2025)');
+    expect(element.querySelector('.experience-client')?.textContent?.replace(/\s+/g, ' ').trim())
+      .toBe('Client: CGI Finance — TMA Banque & Assurance | Java, PL/SQL, KSL Studio, Shell, Azure, Jira');
+    expect(element.querySelector('.experience-tech')).toBeNull();
+  });
+
+  it('should render a personal projects section when the portfolio project is loaded', () => {
+    const projectService = TestBed.inject(ProjectService);
+    projectService.projects.set([{
+      id: 1,
+      title: { fr: 'Mon Portfolio Full-Stack', en: 'My Full-Stack Portfolio' },
+      description: {
+        fr: 'Portfolio développé avec Angular (21), Java (25), Spring Boot (4)',
+        en: 'Portfolio built with Angular (21), Java (25), Spring Boot (4)',
+      },
+      githubUrl: 'https://github.com/ZianeSofiane/Portfolio',
+      demoUrl: 'https://zianesofiane-portfolio.duckdns.org/',
+      featured: true,
+      projectSkills: [{
+        id: 1,
+        skill: { id: 1, name: 'Java', category: 'Backend' },
+        version: '25',
+      }, {
+        id: 2,
+        skill: { id: 2, name: 'Docker', category: 'DevOps' },
+        version: '',
+      }],
+    }]);
+    fixture.detectChanges();
+
+    const section = fixture.nativeElement.querySelector('section[aria-labelledby="resume-projects"]');
+    expect(section?.textContent).toContain('Projets personnels');
+    expect(section?.querySelector('.experience-description')?.textContent)
+      .toContain('Angular (21), Java (25), Spring Boot (4)');
+    expect(section?.querySelector('.experience-tech')).toBeNull();
+    const links = section?.querySelector('.resume-project-links');
+    expect(links?.querySelector('a[href="https://github.com/ZianeSofiane/Portfolio"]')?.textContent)
+      .toContain('GitHub: https://github.com/ZianeSofiane/Portfolio');
+    expect(links?.querySelector('a[href="https://zianesofiane-portfolio.duckdns.org/"]')?.textContent)
+      .toContain('Portfolio: zianesofiane-portfolio.duckdns.org');
   });
 
   it('should open the browser print dialog for a text-based PDF', () => {

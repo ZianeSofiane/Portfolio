@@ -7,6 +7,7 @@ public record ProjectDto (
     Long id,
     Map<String, String> title,
     Map<String, String> description,
+    Map<String, String> skillsPortfolioDescription,
     String imageUrl,
     String githubUrl,
     String demoUrl,

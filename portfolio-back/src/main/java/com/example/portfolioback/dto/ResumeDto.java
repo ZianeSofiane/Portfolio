@@ -19,7 +19,8 @@ public record ResumeDto(
             String location,
             String license,
             String linkedin,
-            String github
+            String github,
+            String portfolio
     ) {}
 
     public record SkillSectionDto(

@@ -12,6 +12,7 @@ export interface Project {
   id: number;
   title: LocalizedText;
   description: LocalizedText;
+  skillsPortfolioDescription?: LocalizedText | null;
   imageUrl?: string;
   githubUrl?: string;
   demoUrl?: string;

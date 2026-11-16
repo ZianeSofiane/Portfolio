@@ -16,6 +16,8 @@ import java.util.Set;
 @Configuration
 public class DataInitializer {
 
+    private static final String PORTFOLIO_URL = "https://zianesofiane-portfolio.duckdns.org/";
+
     @Bean
     CommandLineRunner initData(ProjectRepository projectRepository, ProjectSkillRepository projectSkillRepository, SkillRepository skillRepository,
                                TranslationService translationService, MissionRepository missionRepository, ResumeRepository resumeRepository) {
@@ -44,8 +46,10 @@ public class DataInitializer {
         createOrUpdateSkill(skillRepository, "PowerQuery", "Data");
         createOrUpdateSkill(skillRepository, "PowerBI", "Data");
         Skill docker = createOrUpdateSkill(skillRepository, "Docker", "DevOps");
+        Skill oracleCloud = createOrUpdateSkill(skillRepository, "Oracle Cloud", "DevOps");
         createOrUpdateSkill(skillRepository, "Git", "DevOps");
         createOrUpdateSkill(skillRepository, "Github", "DevOps");
+        Skill githubCopilot = createOrUpdateSkill(skillRepository, "GitHub Copilot", "DevOps");
         createOrUpdateSkill(skillRepository, "Typescript", "Frontend");
         Skill flutter = createOrUpdateSkill(skillRepository, "Flutter", "Frontend");
         Skill html = createOrUpdateSkill(skillRepository, "Html", null);
@@ -60,8 +64,10 @@ public class DataInitializer {
                 .orElseGet(Project::new);
         portfolio.setTitle(translationService.get(TranslationService.PROJECT_PORTFOLIO_TITLE));
         portfolio.setDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_DESCRIPTION));
+        portfolio.setSkillsPortfolioDescription(translationService.get(TranslationService.PROJECT_PORTFOLIO_SKILLS_DESCRIPTION));
         portfolio.setFeatured(true);
         portfolio.setGithubUrl("https://github.com/ZianeSofiane/Portfolio");
+        portfolio.setDemoUrl(PORTFOLIO_URL);
         portfolio.setImageUrl("portfolio.png");
         portfolio = projectRepository.save(portfolio);
 
@@ -70,7 +76,9 @@ public class DataInitializer {
         ProjectSkill pfAngular = createOrUpdateProjectSkill(projectSkillRepository, portfolio, angular, "21");
         ProjectSkill pfTailwind = createOrUpdateProjectSkill(projectSkillRepository, portfolio, tailwind, "4.3");
         ProjectSkill pfDocker = createOrUpdateProjectSkill(projectSkillRepository, portfolio, docker, "29.1.3");
-        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker);
+        ProjectSkill pfOracleCloud = createOrUpdateProjectSkill(projectSkillRepository, portfolio, oracleCloud, null);
+        ProjectSkill pfCopilot = createOrUpdateProjectSkill(projectSkillRepository, portfolio, githubCopilot, null);
+        addProjectSkills(portfolio, pfJava, pfSpring, pfAngular, pfTailwind, pfDocker, pfOracleCloud, pfCopilot);
         projectRepository.save(portfolio);
 
         // --- GEOQUIZZ ---
@@ -396,7 +404,8 @@ public class DataInitializer {
                 "Valenciennes (59300)",
                 "Permis B",
                 "https://www.linkedin.com/in/sofiane-ziane-a52814225/",
-                "https://github.com/ZianeSofiane"
+                "https://github.com/ZianeSofiane",
+                PORTFOLIO_URL
         ));
 
         resume.setSkills(List.of(
@@ -406,7 +415,7 @@ public class DataInitializer {
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Front-end", "en", "Front end"),
-                        "Angular, TypeScript, JavaScript, HTML, CSS"
+                        "Angular, TypeScript, PrimeNg, Tailwind"
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "Bases de données", "en", "Databases"),
@@ -414,7 +423,7 @@ public class DataInitializer {
                 ),
                 new ResumeDto.SkillSectionDto(
                         Map.of("fr", "CI/CD & outils", "en", "CI/CD & tools"),
-                        "GitLab CI, Jenkins, SonarQube, Jira, Apache Tomcat, Azure"
+                        "GitLab, Jira, Jenkins, SonarQube, Azure, Docker"
                 )
         ));
 
@@ -428,10 +437,6 @@ public class DataInitializer {
         resume.setEducation(List.of(
                 new ResumeDto.EducationDto(
                         Map.of("fr", "Master TNSI (Technologies Nouvelles et Systèmes d'Informations)", "en", "Master's Degree in New Technologies and Information Systems"),
-                        "INSA, UPHF"
-                ),
-                new ResumeDto.EducationDto(
-                        Map.of("fr", "Licence Informatique", "en", "Bachelor's Degree in Computer Science"),
                         "INSA, UPHF"
                 ),
                 new ResumeDto.EducationDto(
@@ -463,11 +468,11 @@ public class DataInitializer {
                         Map.of("fr", "Août 2022 – Février 2024", "en", "August 2022 – February 2024"),
                         Map.of("fr", "Refonte complète d'un référentiel centralisé de données sur les incidents et défaillances de SNCF Réseau.", "en", "Redesigned a centralized data repository for SNCF Réseau incidents and failures."),
                         List.of(
-                                Map.of("fr", "Développement full stack (Spring Boot / Angular 15) du gisement de données centralisé : création de nouvelles fonctionnalités et interfaces utilisateur", "en", "Developed the centralized data repository with Spring Boot and Angular 15, creating new features and user interfaces"),
+                                Map.of("fr", "Développement full stack (Spring Boot, Angular 15) d'un gisement de données centralisé : conception des API REST, développement des interfaces utilisateur et mise en place de nouvelles fonctionnalités métiers.", "en", "Full-stack development (Spring Boot, Angular 15) of a centralized data repository: REST API design, user interface development, and implementation of new business features."),
                                 Map.of("fr", "Conception d'un moteur de dépendances temporelles et de règles de validation des modifications parent-enfant", "en", "Designed a temporal dependency engine and parent-child change validation rules"),
                                 Map.of("fr", "Rédaction des spécifications techniques et plans de tests, et revues de code via GitLab", "en", "Wrote technical specifications and test plans, and conducted code reviews through GitLab")
                         ),
-                        List.of("Java 17", "Spring Boot", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
+                        List.of("Java 17", "Spring Boot", "API REST", "PostgreSQL", "Angular 15", "PrimeNG", "GitLab CI", "Jenkins", "SonarQube")
                 ),
                 new ResumeDto.ExperienceDto(
                         Map.of("fr", "Ingénieur d'études et développement (stage)", "en", "Software Engineer (internship)"),
@@ -478,23 +483,10 @@ public class DataInitializer {
                         Map.of("fr", "Automatisation de processus internes et modernisation de l'écosystème logiciel.", "en", "Automated internal processes and modernized the software ecosystem."),
                         List.of(
                                 Map.of("fr", "Migration de dépôts d'artefacts (Nexus vers Artifactory) et mise à jour des pipelines Jenkins (pratiques DevOps)", "en", "Migrated artifact repositories from Nexus to Artifactory and updated Jenkins pipelines using DevOps practices"),
-                                Map.of("fr", "Modernisation de code legacy : migration de Java 7 vers Java 8 (Streams & Lambdas API) pour améliorer la maintenabilité", "en", "Modernized legacy code by migrating from Java 7 to Java 8 (Streams and Lambdas API) to improve maintainability"),
-                                Map.of("fr", "Flux de données end-to-end : extraction de KPIs via l'API REST Jira (développé en Java / Spring Boot), stockage en base de données et alimentation des rapports Power BI", "en", "Built an end-to-end data flow in Java / Spring Boot: extracted KPIs via the Jira REST API, stored them in a database, and fed Power BI reports"),
-                                Map.of("fr", "Conception de tableaux de bord et d'indicateurs avec Power BI et Power Query", "en", "Built dashboards and KPIs with Power BI and Power Query")
+                                Map.of("fr", "Modernisation de code legacy : migration de Java 7 vers Java 8 (Streams & Lambdas API)", "en", "Modernized legacy code by migrating from Java 7 to Java 8 (Streams and Lambdas API)"),
+                                Map.of("fr", "Pipeline de données end-to-end : extraction des KPIs de tickets via l'API REST Jira (Java / Spring Boot), stockage en base et création des tableaux de bord sous Power BI (Power Query)", "en", "Built an end-to-end data pipeline: extracted ticket KPIs via the Jira REST API (Java / Spring Boot), stored them in a database, and created dashboards with Power BI (Power Query)")
                         ),
                         List.of("Java 17", "REST API", "Artifactory", "Nexus", "Jenkins", "Git", "Mockito", "Power BI")
-                ),
-                new ResumeDto.ExperienceDto(
-                        Map.of("fr", "Développeur web (stage)", "en", "Web developer (internship)"),
-                        "Prodival",
-                        "Rosult",
-                        Map.of("fr", "Projets clients : Bombardier, ArcelorMittal, CFT", "en", "Client projects: Bombardier, ArcelorMittal, CFT"),
-                        Map.of("fr", "Avril 2019 – Mai 2019", "en", "April 2019 – May 2019"),
-                        Map.of("fr", "Refonte de l'aide en ligne d'un logiciel de management de la qualité.", "en", "Redesign of the online help system for a quality management software."),
-                        List.of(
-                                Map.of("fr", "Développement front-end et back-end de pages d'aide en ligne", "en", "Developed front-end and back-end pages for the online help system")
-                        ),
-                        List.of("HTML", "CSS", "jQuery", "C# (.NET)")
                 )
         ));
 

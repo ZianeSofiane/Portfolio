@@ -11,6 +11,7 @@ export interface Resume {
     license: string;
     linkedin: string;
     github: string;
+    portfolio: string;
   };
   skills: {
     category: LocalizedText;
