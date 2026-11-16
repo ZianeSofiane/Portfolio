@@ -42,6 +42,7 @@ public class Project {
     private String demoUrl;
     private String previewUrl;
     private boolean featured;
+    private Integer position;
 
     @ManyToMany
     @JoinTable(
