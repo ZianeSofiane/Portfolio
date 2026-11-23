@@ -5,6 +5,7 @@ import { MissionService } from '../../services/mission.service';
 import { ProjectService } from '../../services/project.service.';
 import { SkillService } from '../../services/skill.service';
 import { TranslationService } from '../../services/translation.service';
+import { Mission } from '../../models/mission.model';
 
 describe('Missions personal projects', () => {
   let fixture: ComponentFixture<Missions>;
@@ -26,6 +27,24 @@ describe('Missions personal projects', () => {
     description: { fr: 'Jeu de géographie', en: 'Geography game' },
     featured: true,
     projectSkills: [],
+  };
+  const mission: Mission = {
+    id: 'mission-1',
+    role: { fr: 'Développeur', en: 'Developer' },
+    company: 'Sopra Steria',
+    startDate: '2024-02-01',
+    endDate: '2025-02-01',
+    duration: { fr: '1 an', en: '1 year' },
+    location: 'Lille',
+    contractType: 'CDI',
+    teamSize: { fr: '12 personnes', en: '12 members' },
+    methodology: { fr: 'Agile', en: 'Agile' },
+    context: { fr: 'Contexte français', en: 'English context' },
+    responsibilities: [{
+      category: { fr: 'Développement', en: 'Development' },
+      tasks: [{ fr: 'Développer', en: 'Develop' }],
+    }],
+    techStack: ['Java'],
   };
 
   beforeEach(async () => {
@@ -73,6 +92,35 @@ describe('Missions personal projects', () => {
         expect(text).toContain('Caddy et DuckDNS');
         expect(text).toContain('Jeu de géographie');
         expect(text).not.toContain('Description courte');
+      }
+    } finally {
+      if (clipboard) Object.defineProperty(navigator, 'clipboard', clipboard);
+      else Reflect.deleteProperty(navigator, 'clipboard');
+      if (secureContext) Object.defineProperty(window, 'isSecureContext', secureContext);
+      else Reflect.deleteProperty(window, 'isSecureContext');
+    }
+  });
+
+  it.each([
+    { lang: 'fr' as const, team: 'Équipe : 12 personnes', context: 'Contexte\nContexte français', responsibilities: 'Responsabilités\nDéveloppement' },
+    { lang: 'en' as const, team: 'Team: 12 members', context: 'Context\nEnglish context', responsibilities: 'Responsibilities\nDevelopment' },
+  ])('copies localized mission labels in $lang for individual and copy-all actions', async ({ lang, team, context, responsibilities }) => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    const clipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
+    const secureContext = Object.getOwnPropertyDescriptor(window, 'isSecureContext');
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
+    Object.defineProperty(window, 'isSecureContext', { configurable: true, value: true });
+
+    try {
+      TestBed.inject(MissionService).missions.set([mission]);
+      TestBed.inject(TranslationService).setLanguage(lang);
+      await fixture.componentInstance.copy(fixture.componentInstance.missions()[0]);
+      await fixture.componentInstance.copyAll();
+      expect(writeText).toHaveBeenCalledTimes(2);
+      for (const [text] of writeText.mock.calls) {
+        expect(text).toContain(team);
+        expect(text).toContain(context);
+        expect(text).toContain(responsibilities);
       }
     } finally {
       if (clipboard) Object.defineProperty(navigator, 'clipboard', clipboard);
