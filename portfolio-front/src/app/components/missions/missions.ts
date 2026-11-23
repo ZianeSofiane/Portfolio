@@ -132,15 +132,15 @@ export class Missions {
       `${m.company} — ${m.role}`,
       [m.clientOrSector, m.location, m.contractType].filter(Boolean).join(' · '),
       `${formatMissionPeriod(m.startDate, m.endDate, this.i18n.language())} · ${m.duration}`,
-      [m.methodology, m.teamSize && `Équipe : ${m.teamSize}`].filter(Boolean).join(' · '),
+      [m.methodology, m.teamSize && `${this.i18n.translate('missions.team')}${this.i18n.language() === 'fr' ? ' :' : ':'} ${m.teamSize}`].filter(Boolean).join(' · '),
     ].filter(Boolean);
     const responsibilities = m.responsibilities.map(
       (r) => `${r.category}\n${r.tasks.map((x) => `- ${x}`).join('\n')}`,
     );
     const text = [
       header.join('\n'),
-      `Contexte\n${m.context}`,
-      `Responsabilités\n${responsibilities.join('\n\n')}`,
+      `${this.i18n.translate('missions.copyContext')}\n${m.context}`,
+      `${this.i18n.translate('missions.copyResponsibilities')}\n${responsibilities.join('\n\n')}`,
       `Technologies : ${m.techStack.join(', ')}`,
     ].join('\n\n');
     return text;

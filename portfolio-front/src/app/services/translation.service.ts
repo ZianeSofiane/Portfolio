@@ -55,6 +55,8 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
     'missions.context': 'Contexte & méthodologie',
     'missions.team': 'Équipe',
     'missions.resp': 'Responsabilités & réalisations',
+    'missions.copyContext': 'Contexte',
+    'missions.copyResponsibilities': 'Responsabilités',
     'footer.rights': 'Tous droits réservés',
   },
   en: {
@@ -109,6 +111,8 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
     'missions.context': 'Context & methodology',
     'missions.team': 'Team',
     'missions.resp': 'Responsabilities & achievements',
+    'missions.copyContext': 'Context',
+    'missions.copyResponsibilities': 'Responsibilities',
     'footer.rights': 'All rights reserved',
   },
 };
